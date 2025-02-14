@@ -45,7 +45,7 @@ WiFi credentials for DIA-LAB and eduroam have already been set on the laptops, a
 
 ## VS Code
 
-*Visual Studio Code* is installed on the laptops for you to use when working on your ROS applications for the assignment tasks. Launch VS Code from any terminal by simply typing `code`. You can also launch it by clicking the icon in the favourites bar on the left-hand side of the screen:
+*Visual Studio Code* is installed on the laptops for you to use when working on your ROS applications in the labs. Launch VS Code from any terminal by simply typing `code`. You can also launch it by clicking the icon in the favourites bar on the left-hand side of the screen:
 
 <figure markdown>
   ![](../images/vscode/icon.png)

@@ -6,11 +6,10 @@ A ROS Metapackage called `tuos_ros` has been put together to support these cours
 
 | Package Name | Description |
 | :---: | :--- |
-| `tuos_examples` | Some example scripts to support certain exercises in COM2009 Assignment #1 |
-| `tuos_interfaces` | Some custom ROS interfaces to support certain exercises in COM2009 Assignment #1 |
-| `tuos_simulations` | Some Gazebo simulations to support certain exercises in COM2009 Assignment #1 |
+| `tuos_examples` | Some example scripts to support certain exercises the Simulation Lab Course |
+| `tuos_interfaces` | Some custom ROS interfaces to support certain exercises in the Simulation Lab Course |
+| `tuos_simulations` | Some Gazebo simulations to support certain exercises in the Simulation Lab Course |
 | `tuos_tb3_tools` | Scripts that run on the real Waffles, and some RViz configs to support real robot work too | 
-| `com2009_simulations` | Simulation resources to support your development work in COM2009 Assignment #2 |
 
 ## Installing
 

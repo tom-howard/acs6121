@@ -9,7 +9,7 @@ The labs for ACS6121 are split into two parts:
 
 * [**Simulation Labs**: "An Introduction to ROS (the Robot Operating System)"](./sim/README.md).
 
-    *Here you will learn what ROS is and how to use it. You will complete this assignment individually, and in your own time.*
+    *Here you will learn what ROS is and how to use it.*
 
     **Weighting**: 20% of the overall ACS6121 module mark.
 

@@ -1,5 +1,5 @@
 ---  
-title: "Part 2: Odometry & Navigation"  
+title: "Part 2 (Essential): Odometry & Navigation"  
 description: Learn about Odometry, which informs us of a robot's position and orientation in an environment. Apply both open and closed-loop velocity control methods to a Waffle. 
 ---
 

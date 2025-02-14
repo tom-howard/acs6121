@@ -1,5 +1,5 @@
 ---  
-title: "Part 3: Beyond the Basics"  
+title: "Part 3 (Essential): Beyond the Basics"  
 description: Execute ROS applications more efficiently using launch files. Learn about the LiDAR sensor, the data that it generates, and see the benefits of this for tools like "SLAM".
 ---
 
@@ -819,7 +819,7 @@ In combination, the data from the LiDAR sensor and the robot's odometry (the rob
 
 #### Summary of SLAM
 
-See how easy it was to map an environment in the previous exercise? This works just as well on a real robot in a real environment too (as you will observe in [one of the Real Waffle "Getting Started Exercises" for Assignment #2](../../waffles/basics.md#exSlam)). 
+See how easy it was to map an environment in the previous exercise? This works just as well on a real robot in a real environment too (as you will observe in [one of the Real Waffle "Getting Started Exercises"](../../waffles/basics.md#exSlam)). 
 
 This illustrates the power of ROS: having access to tools such as SLAM, which are built into the ROS framework, makes it really quick and easy for a robotics engineer to start developing robotic applications on top of this. Our job was made even easier here since we used some packages that had been pre-made by the manufacturers of our TurtleBot3 Robots to help us launch SLAM with the right configurations for our exact robot.  If you were developing a robot yourself, or working with a different type of robot, then you might need to do a bit more work in setting up and tuning the SLAM tools to make them work for your own application.
 

@@ -1,27 +1,7 @@
 ---  
-title: "Part 5: Actions"  
+title: "Part 5 (Optional): Actions"  
 description: Learn about another ROS communication method which is similar to a ROS Service, but with a few key benefits and which has some alternative use-cases.
 ---
-
-<!-- 
-
-launching tmux with a config file (for a four pane window):
-
-tmux new-session -s SESSION "tmux source-file ~/tmux.conf"
-
-- change SESSION name accordingly
-- tmux.conf:
-
-new
-neww
-splitw -v
-splitw -h
-select-pane -t 0
-splitw -h
-select-pane -t 0
-set -g mouse
-
- -->
 
 ## Introduction
 
@@ -982,17 +962,6 @@ Up to now, your Action Client node should have the capability to call the `Explo
 * Between action calls, your *client* node could make the robot turn on the spot to face a different direction and then issue a further action call to make the robot move forwards once again.
 * The turning process could be done at random (*ideally*), or by a fixed amount every time.
 * By programming your client node to repeat this process over and over again, the robot would (somewhat randomly) travel around its environment safely, stopping before it crashes into any obstacles and reorienting itself every time it stops moving forwards. 
-
-<!-- !!! success "Assignment #2 Checkpoint"
-    Having completed Assignment #1 up to this point, you should have everything you need to tackle [Assignment #2 Task 2](../assignment2/parta/task2.md). -->
-
-<!-- #### :material-pen: Advanced Exercise 2: Autonomous Navigation using waypoint markers {#adv_ex2}
-
-In Part 3 you used SLAM to construct a map of an environment ([Exercise 2](./part3.md#ex2)) and then issued navigation requests to the `move_base` action server, via the command-line, ([Exercise 3](./part3.md#ex3)) to make your robot move to a zone marker, based on coordinates that you had established beforehand. Now that you know how to build Action Client Nodes in Python you could return to your `part2_navigation` package and build a new node that makes the robot move sequentially between each zone marker programmatically.
-
-* Your node could cycle through the coordinates of all four of the zone markers (or "waypoints") that you established whilst using SLAM to build a map of the environment ([as per Exercise 2](./part3.md#ex2)).
-* Your node could monitor the status of the `move_base_simple` action call to know when the robot has reached a zone marker, so that it knows when to issue a further action call to move on to the next one.
-* You could refer to [the launch file that you created in Part 3](./part3.md#launch_file) to launch all the navigation processes that need to be running in order to enable and configure the ROS Navigation Stack appropriately for the TurtleBot3 robot. -->
 
 ## Wrapping Up
 

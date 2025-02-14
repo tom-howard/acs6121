@@ -1,5 +1,5 @@
 ---
-title: "Part 6: Cameras, Machine Vision & OpenCV"  
+title: "Part 6 (Optional): Cameras, Machine Vision & OpenCV"  
 description: Learn how to work with images from an on-board camera. Learn techniques to detect features within these images, and use this to inform robot decision-making.
 ---
 
@@ -483,7 +483,7 @@ Inside the `tuos_examples` package there is a node that has been developed to il
 
 Line following is a handy skill for a robot to have! We can achieve this on our TurtleBot3 using its camera system and the image processing techniques that have been covered so far in this session.
 
-COM2009 Lecture 6 introduces a well established algorithm for closed-loop control known as **PID Control**, and this can be used to achieve such line following behaviour.
+You will no doubt already be familiar with the well established algorithm for closed-loop control known as **PID Control**, and this can be used to achieve such line following behaviour.
 
 At the heart of this is the principle of *Negative-Feedback* control, which considers a **Reference Input**, a **Feedback Signal** and the **Error** between these.
 
@@ -517,7 +517,7 @@ $$
 u(t)=K_{P} e(t) + K_{I}\int e(t)dt + K_{D}\dfrac{d}{dt}e(t)
 $$
 
-Where $u(t)$ is the **Controlled Output**, $e(t)$ is the **Error** (as illustrated in the figure above) and $K_{P}$, $K_{I}$ and $K_{D}$ are Proportional, Integral and Differential **Gains** respectively. These three gains are constants that must be established for any given system through a process called *tuning*. This tuning process is discussed in COM2009 Lecture 6, but you will also explore this in the practical exercise that follows.
+Where $u(t)$ is the **Controlled Output**, $e(t)$ is the **Error** (as illustrated in the figure above) and $K_{P}$, $K_{I}$ and $K_{D}$ are Proportional, Integral and Differential **Gains** respectively. These three gains are constants that must be established for any given system through a process called *tuning*. We'll explore this tuning process in the practical exercise that follows.
 
 #### :material-pen: Exercise 4: Line Following {#ex4}
 

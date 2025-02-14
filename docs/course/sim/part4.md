@@ -1,5 +1,5 @@
 ---  
-title: "Part 4: Services"  
+title: "Part 4 (Optional): Services"  
 description: Learn about an alternative way that ROS nodes can communicate across a ROS network, and the situations where this might be useful.  
 ---
 
@@ -691,7 +691,7 @@ ros2 run nav2_map_server map_saver_cli -f MAP_NAME
 </figure>
 
 
-In real-world tasks however (i.e. tasks that you might need to complete in [Assignment #2](../assignment2/README.md) for example), your robot might be exploring an environment *autonomously*, and you don't necessarily know when the full environment has been explored, nor are you always going to be there to run the `map_saver_cli` node manually! You might therefore want to program your robot with the ability to save a map *incrementally* and *periodically* as more and more of the environment is explored.
+In real-world tasks however (i.e. tasks that you might need to complete in the Real-Robot Labs for example), your robot might be exploring an environment *autonomously*, and you don't necessarily know when the full environment has been explored, nor are you always going to be there to run the `map_saver_cli` node manually! You might therefore want to program your robot with the ability to save a map *incrementally* and *periodically* as more and more of the environment is explored.
 
 The process that we explored in the previous exercise allows you to do just that! In the example, our client node was programmed to make only one request to the server and then stop. It *could* however be programmed to make regular service requests (say, once every 5 or 10 seconds) in order to continuously update its map as the robot explores further and further.
 
