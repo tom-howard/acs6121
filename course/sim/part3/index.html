@@ -1,0 +1,2919 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Execute ROS applications more efficiently using launch files. Learn about the LiDAR sensor, the data that it generates, and see the benefits of this for tools like "SLAM".">
+      
+      
+      
+        <link rel="canonical" href="https://tom-howard.github.io/acs6121/course/sim/part3/">
+      
+      
+        <link rel="prev" href="../part2/">
+      
+      
+        <link rel="next" href="../part4/">
+      
+      
+      <link rel="icon" href="../../../assets/tuos_logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Part 3 (Essential): Beyond the Basics - Lab Material for ACS6121</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../../../assets/external/fonts.googleapis.com/css.c3479dc1.css">
+        <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Part 3 (Essential): Beyond the Basics - Lab Material for ACS6121" >
+      
+        <meta  property="og:description"  content="Execute ROS applications more efficiently using launch files. Learn about the LiDAR sensor, the data that it generates, and see the benefits of this for tools like "SLAM"." >
+      
+        <meta  property="og:image"  content="https://tom-howard.github.io/acs6121/assets/images/social/course/sim/part3.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://tom-howard.github.io/acs6121/course/sim/part3/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Part 3 (Essential): Beyond the Basics - Lab Material for ACS6121" >
+      
+        <meta  name="twitter:description"  content="Execute ROS applications more efficiently using launch files. Learn about the LiDAR sensor, the data that it generates, and see the benefits of this for tools like "SLAM"." >
+      
+        <meta  name="twitter:image"  content="https://tom-howard.github.io/acs6121/assets/images/social/course/sim/part3.png" >
+      
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Lab Material for ACS6121" class="md-header__button md-logo" aria-label="Lab Material for ACS6121" data-md-component="logo">
+      
+  <img src="../../../assets/tuos.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lab Material for ACS6121
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Part 3 (Essential): Beyond the Basics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tom-howard/acs6121" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tom-howard/acs6121
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../about/" class="md-tabs__link">
+          
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ros/" class="md-tabs__link">
+          
+  
+    
+  
+  Accessing ROS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  The Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../waffles/" class="md-tabs__link">
+          
+  
+    
+  
+  The Waffles
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Lab Material for ACS6121" class="md-nav__button md-logo" aria-label="Lab Material for ACS6121" data-md-component="logo">
+      
+  <img src="../../../assets/tuos.png" alt="logo">
+
+    </a>
+    Lab Material for ACS6121
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tom-howard/acs6121" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tom-howard/acs6121
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../about/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/robots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducing the Robots
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Version History
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ros/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Accessing ROS
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Accessing ROS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ros/wsl-ros/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    WSL-ROS2
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            WSL-ROS2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ros/wsl-ros/install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing WSL-ROS2 on your Own (Windows) Machine
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ros/wsl-ros/man-win/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accessing WSL-ROS2 from A University Managed Desktop Computer on Campus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ros/other-options/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Other Installation Options
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Other Installation Options
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ros/other-options/docker-ros2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing "docker-ros2" for Linux, Mac (and Windows)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ros/other-options/utm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing with UTM (on a Mac)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ros/using-wsl-ros/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Using WSL-ROS2
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Using WSL-ROS2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ros/using-wsl-ros/man-win/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    University Managed Desktops
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ros/using-wsl-ros/linux-term/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A Quick Introduction to the Linux Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ros/using-wsl-ros/vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VS Code and WSL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    The Labs
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            The Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Simulation Labs
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Simulation Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 1 (Essential): Getting Started with ROS 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 2 (Essential): Odometry & Navigation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Part 3 (Essential): Beyond the Basics
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Part 3 (Essential): Beyond the Basics
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aims" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aims
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intended-learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intended Learning Outcomes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Links
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launch-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Launch Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1: Creating a Launch File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ex2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2: Launching Another Launch File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lidar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laser Displacement Data and The LiDAR Sensor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laser Displacement Data and The LiDAR Sensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introducing-the-laserscan-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducing the LaserScan Interface
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introducing the LaserScan Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 3: Using RViz to Visualise LaserScan Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpreting-laserscan-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpreting LaserScan Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpreting LaserScan Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 4: Building a LaserScan Callback Function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simultaneous Localisation and Mapping (SLAM)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simultaneous Localisation and Mapping (SLAM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 5: Building a map of an environment with SLAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-slam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of SLAM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrapping-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wrapping Up
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wrapping Up">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL-ROS2 Managed Desktop Users: Save your work!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 4 (Optional): Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 5 (Optional): Actions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Part 6 (Optional): Cameras, Machine Vision & OpenCV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../extras/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Additional Resources
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Additional Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/launch-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Launch Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/course-repo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The TUoS ROS Course Repo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../waffles/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    The Waffles
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            The Waffles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../waffles/intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../waffles/launching-ros/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Launching ROS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../waffles/basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Waffle (& ROS) Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../waffles/essentials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Further (Essential) Exercises
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../waffles/shutdown/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shutdown Procedures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aims" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aims
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intended-learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intended Learning Outcomes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Links
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Resources
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launch-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Launch Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1: Creating a Launch File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ex2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2: Launching Another Launch File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lidar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laser Displacement Data and The LiDAR Sensor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laser Displacement Data and The LiDAR Sensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introducing-the-laserscan-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducing the LaserScan Interface
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introducing the LaserScan Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 3: Using RViz to Visualise LaserScan Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpreting-laserscan-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpreting LaserScan Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpreting LaserScan Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 4: Building a LaserScan Callback Function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simultaneous Localisation and Mapping (SLAM)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simultaneous Localisation and Mapping (SLAM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 5: Building a map of an environment with SLAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-slam" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary of SLAM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrapping-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wrapping Up
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wrapping Up">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL-ROS2 Managed Desktop Users: Save your work!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/tom-howard/acs6121/edit/main/docs/course/sim/part3.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/tom-howard/acs6121/raw/main/docs/course/sim/part3.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Part 3 (Essential): Beyond the Basics</h1>
+
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44s-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3z"/></svg></span> <strong>Exercises</strong>: 5<br />
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19.03 7.39 1.42-1.42c-.45-.51-.9-.97-1.41-1.41L17.62 6c-1.55-1.26-3.5-2-5.62-2a9 9 0 0 0 0 18c5 0 9-4.03 9-9 0-2.12-.74-4.07-1.97-5.61M13 14h-2V7h2zm2-13H9v2h6z"/></svg></span> <strong>Estimated Completion Time</strong>: 2 hours<br />
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 2a8 8 0 0 1 8 8c0 2.4-1 4.5-2.7 6-1.4-1.3-3.3-2-5.3-2s-3.8.7-5.3 2C5 16.5 4 14.4 4 12a8 8 0 0 1 8-8m2 1.89c-.38.01-.74.26-.9.65l-1.29 3.23-.1.23c-.71.13-1.3.6-1.57 1.26-.41 1.03.09 2.19 1.12 2.6s2.19-.09 2.6-1.12c.26-.66.14-1.42-.29-1.98l.1-.26 1.29-3.21.01-.03c.2-.51-.05-1.09-.56-1.3-.13-.05-.26-.07-.41-.07M10 6a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 9a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 0a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Difficulty Level</strong>: Intermediate  </p>
+<h3 id="aims">Aims<a class="headerlink" href="#aims" title="Permanent link">&para;</a></h3>
+<p>In this part of the course we'll look at some more advanced ROS concepts, and explore another of our robot's on-board sensors: the LiDAR sensor. From the work you did in Part 2 you may have started to appreciate the limitations associated with using odometry data alone as a feedback signal when trying to control a robot's position in its environment. The LiDAR sensor can provide further information about an environment, thus enhancing a robot's knowledge and capabilities. To begin with however, we'll look at how to launch ROS applications more efficiently by creating our own <em>launch files</em> and executing these with the <code>ros2 launch</code> command. </p>
+<h3 id="intended-learning-outcomes">Intended Learning Outcomes<a class="headerlink" href="#intended-learning-outcomes" title="Permanent link">&para;</a></h3>
+<p>By the end of this session you will be able to:</p>
+<ol>
+<li>Create launch files to allow the execution of multiple ROS Nodes simultaneously with <code>ros2 launch</code>.</li>
+<li>Learn about the robot's LiDAR sensor and the measurements obtained from this.</li>
+<li>Interpret the <code>LaserScan</code> data that is published to the <code>/scan</code> topic and use existing ROS tools to visualise this.</li>
+<li>Perform numeric analysis on data arrays (using the <code>numpy</code> Python library) to process <code>LaserScan</code> data for use in ROS applications.</li>
+<li>Use existing ROS tools to implement SLAM and build a map of an environment. </li>
+</ol>
+<h3 id="quick-links">Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#ex1">Exercise 1: Creating a Launch File</a></li>
+<li><a href="#ex2">Exercise 2: Launching Another Launch File</a></li>
+<li><a href="#ex3">Exercise 3: Using RViz to Visualise LaserScan Data</a></li>
+<li><a href="#ex4">Exercise 4: Building a LaserScan Callback Function</a></li>
+<li><a href="#ex5">Exercise 5: Building a map of an environment with SLAM</a></li>
+</ul>
+<h3 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="lidar_subscriber/">A Basic LaserScan Subscriber Node (for Exercise 4)</a></li>
+</ul>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1: Launch your ROS Environment</strong></p>
+<p>If you haven't done so already, launch your ROS environment now:</p>
+<ol>
+<li><strong>Using WSL-ROS2 on a university managed desktop machine</strong>: follow <a href="../../../ros/using-wsl-ros/man-win/">the instructions here to launch it</a>.</li>
+<li><strong><a href="../../../ros/wsl-ros/install/">Running WSL-ROS2 on your own machine</a></strong>: launch the Windows Terminal to access a WSL-ROS2 terminal instance.</li>
+<li><strong>Other Users</strong>: Follow <a href="../../../ros/other-options/">the relevant steps</a> to launch a terminal instance into your local ROS installation.</li>
+</ol>
+<p>You should now have access to a Linux terminal instance, and we'll refer to this terminal instance as <strong>TERMINAL 1</strong>.</p>
+<p><strong>Step 2: Restore your work (WSL-ROS2 Managed Desktop Users ONLY)</strong></p>
+<p>Remember that any work that you do within the WSL-ROS2 Environment will not be preserved between sessions or across different University computers. At <a href="../part2/#backup">the end of Part 2</a> you should have run the <code>wsl_ros</code> tool to back up your home directory to your University <code>U:\</code> Drive. Once WSL-ROS2 is up and running, you should be prompted to restore this:</p>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>It looks like you already have a backup from a previous session:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  U:\wsl-ros\ros2-backup-XXX.tar.gz
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Do you want to restore this now? [y/n]
+</code></pre></div>
+<p>Enter <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span> to restore your work from last time. You can also restore your work at any time using the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wsl_ros<span class="w"> </span>restore
+</code></pre></div>
+<p><strong>Step 3: Launch VS Code</strong>  </p>
+<p>It's also worth launching VS Code now, so that it's ready to go for when you need it later on. </p>
+<details class="warning">
+<summary>WSL Users...</summary>
+<p>It's important to launch VS Code within your ROS environment using the "WSL" extension. Always remember to check for this: </p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../ros/figures/code-wsl-ext-on.png" width="400px" /></a>
+</figure></p>
+</details>
+<p><strong>Step 4: Make Sure The Course Repo is Up-To-Date</strong></p>
+<p>In Part 1 you should have <a href="../part1/#course-repo">downloaded and installed The Course Repo</a> into your ROS environment. Hopefully you've done this by now, but if you haven't then go back and do it now (you'll need it for some exercises here). If you <em>have</em> already done it, then (once again) it's worth just making sure it's all up-to-date, so run the following command now to do so:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>~/ros2_ws/src/tuos_ros/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull
+</code></pre></div></p>
+<p>Then run <code>colcon build</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>~/ros2_ws/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--packages-up-to<span class="w"> </span>tuos_ros
+</code></pre></div>
+<p>And finally, re-source your environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Remember</p>
+<p>If you have any other terminal instances open, then you'll need run <code class="highlight"><span class="nb">source</span><span class="w"> </span>~/.bashrc</code> in these too, in order for the changes to propagate through to these as well!</p>
+</div>
+<h2 id="launch-files">Launch Files<a class="headerlink" href="#launch-files" title="Permanent link">&para;</a></h2>
+<p>So far (in Parts 1 &amp; 2) we've used the <code>ros2 run</code> command to execute a variety of ROS nodes, such as <code>teleop_keyboard</code>, as well as a number of nodes that we've created of our own. You may also have noticed that we've used a <code>ros2 launch</code> command now and again too, mainly to launch Gazebo Simulations of our robot, but why do we have these two commands, and what's the difference between them?</p>
+<p>Complex ROS applications typically require the execution of multiple nodes at the same time. The <code>ros2 run</code> command only allows us to execute a single node, and so this isn't that convenient for such complex applications, where we'd have to open multiple terminals, use <code>ros2 run</code> multiple times <em>and</em> make sure that we ran everything in the correct order without forgetting anything! <code>ros2 launch</code>, on the other hand, provides a means to launch multiple ROS nodes <em>simultaneously</em> by defining exactly what we want to launch within <em>launch files</em>. This makes the execution of complex applications more reliable, repeatable and easier for others to launch these applications correctly. </p>
+<h4 id="ex1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44s-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3z"/></svg></span> Exercise 1: Creating a Launch File<a class="headerlink" href="#ex1" title="Permanent link">&para;</a></h4>
+<p>In order to see how launch files work, let's create some of our own!</p>
+<p>In Part 1 we created <code>publisher.py</code> and <code>subscriber.py</code> nodes that could talk to one another via a topic called <code>/my_topic</code>. We launched these independently using the <code>ros2 run</code> command in two separate terminals. Wouldn't it be nice if we could have launched them both at the same time, from the <em>same terminal</em> instead?</p>
+<p>To start with, let's create another new package, this time called <code>part3_beyond_basics</code>. </p>
+<ol>
+<li>
+<p>In <strong>TERMINAL 1</strong>...</p>
+<ol>
+<li>
+<p>Head to the <code>src</code> folder of your ROS workspace, and into the <code>tuos_ros</code> Course Repo from there:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>~/ros2_ws/src/tuos_ros/
+</code></pre></div></p>
+</li>
+<li>
+<p>Use the <code>create_pkg.sh</code> helper script to create a new package once again:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./create_pkg.sh<span class="w"> </span>part3_beyond_basics
+</code></pre></div>
+</li>
+<li>
+<p>And navigate into the <em>root</em> of this new package, using <code>cd</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>../part3_beyond_basics/
+</code></pre></div>
+<hr />
+</li>
+</ol>
+</li>
+<li>
+<p>Launch files should be located in a <code>launch</code> directory at the root of the package directory, so use <code>mkdir</code> to do this:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir<span class="w"> </span>launch
+</code></pre></div></p>
+<hr />
+</li>
+<li>
+<p>Use the <code>cd</code> command to enter the <code>launch</code> folder that you just created, then use the <code>touch</code> command to create a new empty file called <code>pubsub.launch.py</code>.</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>launch<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>touch<span class="w"> </span>pubsub.launch.py
+</code></pre></div></p>
+</li>
+<li>
+<p>Open this launch file in VS Code and enter the following:</p>
+<div class="highlight"><span class="filename">pubsub.launch.py</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">launch</span><span class="w"> </span><span class="kn">import</span> <span class="n">LaunchDescription</span> <span class="c1"># (1)!</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">launch_ros.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span> <span class="c1"># (2)!</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_launch_description</span><span class="p">():</span> <span class="c1"># (3)!</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">([</span> <span class="c1"># (4)!</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        <span class="n">Node</span><span class="p">(</span> <span class="c1"># (5)!</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>            <span class="n">package</span><span class="o">=</span><span class="s1">&#39;part1_pubsub&#39;</span><span class="p">,</span> <span class="c1"># (6)!</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>            <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;publisher.py&#39;</span><span class="p">,</span> <span class="c1"># (7)!</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_publisher&#39;</span> <span class="c1"># (8)!</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="p">)</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    <span class="p">])</span>
+</code></pre></div>
+<ol>
+<li>Everything that we want to execute with a launch file must be encapsulated within a <code>LaunchDescription</code>, which is imported here from the <code>launch</code> module.</li>
+<li>In order to execute a <em>node</em> from a launch file we need to define it using the <code>Node</code> class from <code>launch_ros.actions</code> (not to be confused with the ROS Action <em>communication method</em> covered in Part 5!)</li>
+<li>We encapsulate a <em>Launch Description</em> inside a <code>generate_launch_description()</code> function.</li>
+<li>Here we define everything that we want this launch file to execute: in this case a Python <em>list</em> <code>[]</code> containing a single <code>Node()</code> item (for now).</li>
+<li>Here we describe the node that we want to launch.</li>
+<li>The name of the package that the node is part of.</li>
+<li>The name of the actual node that we want to launch from the above package.</li>
+<li>
+<p>A name to register this node as on the ROS network. While this is also defined in the node itself: </p>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;simple_publisher&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>...we can override this here with something else. </p>
+</li>
+</ol>
+</li>
+<li>
+<p>We need to make sure we tell <code>colcon</code> about our new <code>launch</code> directory, so that it can build the launch files within it when we run <code>colcon build</code>. To do this, we need to add a <em>directory</em> install instruction to our package's <code>CMakeLists.txt</code>:</p>
+<p>Open up the <code>CMakeLists.txt</code> file and add the following text <strong>just above</strong> the <code>ament_package()</code> line at the very bottom:</p>
+<div class="highlight"><span class="filename">part3_beyond_basics/CMakeLists.txt</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>install(DIRECTORY
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>  launch
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>  DESTINATION share/${PROJECT_NAME}
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>)
+</code></pre></div>
+</li>
+<li>
+<p>Now, let's build the package... <a name="colcon-build"></a></p>
+<ol>
+<li>
+<p>Navigate back to the root of the ROS workspace:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span>~/ros2_ws/
+</code></pre></div></p>
+</li>
+<li>
+<p>Run <code>colcon build</code> on your new package <em>only</em>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>part3_beyond_basics<span class="w"> </span>--symlink-install
+</code></pre></div>
+</li>
+<li>
+<p>And finally, re-source the <code>.bashrc</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<hr />
+</li>
+</ol>
+</li>
+<li>
+<p>Use <code>ros2 launch</code> to launch this file and test it out as it is:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>part3_beyond_basics<span class="w"> </span>pubsub.launch.py
+</code></pre></div></p>
+<hr />
+</li>
+<li>
+<p>The code that we've given you above will launch the <code>publisher.py</code> node from the <code>part1_pubsub</code> package, but not the <code>subscriber.py</code> node.  We therefore need to add another <code>Node()</code> object to our <code>LaunchDescription</code>:</p>
+<div class="highlight"><span class="filename">pubsub.launch.py</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">launch</span><span class="w"> </span><span class="kn">import</span> <span class="n">LaunchDescription</span> 
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">launch_ros.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_launch_description</span><span class="p">():</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">([</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>        <span class="n">Node</span><span class="p">(</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>            <span class="n">package</span><span class="o">=</span><span class="s1">&#39;part1_pubsub&#39;</span><span class="p">,</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>            <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;publisher.py&#39;</span><span class="p">,</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_publisher&#39;</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>        <span class="p">),</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>        <span class="n">Node</span><span class="p">(</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>            <span class="c1"># TODO: define the subscriber.py node...</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>        <span class="p">)</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>    <span class="p">])</span>
+</code></pre></div>
+<p>Using the same methods as above, add the necessary definitions for the <code>subscriber.py</code> node into your launch file.</p>
+</li>
+<li>
+<p>Once you've made these changes <a href="#colcon-build">you'll need to run <code>colcon build</code> again</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You'll need to run <code>colcon build</code> <em>every time</em> you make changes to a launch file, even if you use the <code>--symlink-install</code> option (as this only applies to nodes in the <code>scripts</code> directory)</p>
+</div>
+</li>
+<li>
+<p>Once you've completed this, it should be possible to launch both the publisher and subscriber nodes with <code>ros2 launch</code> and the <code>pubsub.launch.py</code> file. Verify this in <strong>TERMINAL 1</strong> by executing the launch file. Soon after launching this, you should see the following messages to indicate that both nodes are alive:</p>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>[subscriber.py-2] [INFO] [###] [my_subscriber]: The &#39;my_subscriber&#39; node is initialised.
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>[publisher.py-1] [INFO] [###] [my_publisher]: The &#39;my_publisher&#39; node is initialised.
+</code></pre></div>
+<p>... and following this, the outputs of both nodes should be printed to the screen continually:</p>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>[publisher.py-1] [INFO] [###] [my_publisher]: Publishing: &#39;The ROS time is 1737545960 (seconds).&#39;
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>[subscriber.py-2] [INFO] [###] [my_subscriber]: The &#39;my_subscriber&#39; node heard:
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>[subscriber.py-2] [INFO] [###] [my_subscriber]: &#39;The ROS time is 1737545960 (seconds).&#39; 
+</code></pre></div>
+</li>
+<li>
+<p>We can further verify this in a new terminal (<strong>TERMINAL 2</strong>), using commands that we've use in Parts 1 &amp; 2 to <em>list</em> all nodes and topics that are active on our ROS network:</p>
+<hr />
+<p><strong>TERMINAL 2:</strong></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ros2<span class="w"> </span>node<span class="w"> </span>list
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>list
+</code></pre></div></p>
+<p>Do you see what you'd expect to see in the output of these two commands?</p>
+<hr />
+</li>
+</ol>
+<h4 id="ex2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44s-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3z"/></svg></span> Exercise 2: Launching Another Launch File<a class="headerlink" href="#ex2" title="Permanent link">&para;</a></h4>
+<p>Using the processes above, we can develop launch files to execute as many nodes as we want on a ROS network simultaneously. <em>Another</em> thing we can do with launch files is launch <em>other</em> launch files! </p>
+<p>To illustrate this, think back to the <code>move_circle.py</code> node that we developed in Part 2, as part of our <code>part2_navigation</code> package. In order to launch this node we must first launch a robot simulation, e.g.: </p>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_gazebo<span class="w"> </span>empty_world.launch.py
+</code></pre></div>
+<p>In this exercise we'll look at how we can launch the above launch file <em>and</em> our <code>move_circle.py</code> node simultaneously from a single <code>ros2 launch</code> command...</p>
+<ol>
+<li>
+<p>Make sure you're in the <code>launch</code> directory of your <code>part3_beyond_basics</code> package, we can actually use a <code>colcon</code> command to get us to the root of the package directory:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>colcon_cd<span class="w"> </span>part3_beyond_basics
+</code></pre></div></p>
+<p>... and <code>cd</code> to get us into the <code>launch</code> directory from there:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">cd</span><span class="w"> </span>launch/
+</code></pre></div>
+<hr />
+</li>
+<li>
+<p>Make a new launch file in here, called <code>circle.launch.py</code>:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>touch<span class="w"> </span>circle.launch.py
+</code></pre></div></p>
+</li>
+<li>
+<p>Open this up in VS Code and enter the following:</p>
+<div class="highlight"><span class="filename">circle.launch.py</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">launch</span><span class="w"> </span><span class="kn">import</span> <span class="n">LaunchDescription</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">launch_ros.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">launch.actions</span><span class="w"> </span><span class="kn">import</span> <span class="n">IncludeLaunchDescription</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">launch.launch_description_sources</span><span class="w"> </span><span class="kn">import</span> <span class="n">PythonLaunchDescriptionSource</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ament_index_python.packages</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_package_share_directory</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_launch_description</span><span class="p">():</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">([</span>
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>        <span class="n">IncludeLaunchDescription</span><span class="p">(</span> <span class="c1"># (1)!</span>
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>            <span class="n">PythonLaunchDescriptionSource</span><span class="p">(</span> <span class="c1"># (2)!</span>
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="c1"># (3)!</span>
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>                    <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s2">&quot;turtlebot3_gazebo&quot;</span><span class="p">),</span> 
+<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>                    <span class="s2">&quot;launch&quot;</span><span class="p">,</span> <span class="s2">&quot;empty_world.launch.py&quot;</span> <span class="c1"># (4)!</span>
+<a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a>                <span class="p">)</span>
+<a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a>            <span class="p">)</span>
+<a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a>        <span class="p">)</span>
+<a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a>    <span class="p">])</span>
+</code></pre></div>
+<ol>
+<li>To include another launch file in a launch description, we use a <code>IncludeLaunchDescription()</code> class instance (imported from a module called <code>launch.actions</code>).</li>
+<li>
+<p>We want to launch the "Empty World" simulation from the <code>turtlebot3_gazebo</code> package, which (as we know) can be done <em>from a terminal</em> with the following command:</p>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_gazebo<span class="w"> </span>empty_world.launch.py
+</code></pre></div>
+<p>Based on the above, we know that the launch file itself is a <em>Python</em> launch file, due to the <code>.py</code> file extension at the end.</p>
+<p>As such, the launch description that we want to include is a <em>Python</em> launch description, which must therefore be defined using a <code>PythonLaunchDescriptionSource()</code> instance (imported from a module called <code>launch.launch_description_sources</code>)</p>
+</li>
+<li>
+<p>The <code>os.path.join()</code> method (from the standard Python <code>os</code> library) can be used to build file paths. </p>
+</li>
+<li>
+<p>The <em>Python Launch Description Source</em> is defined by providing the full path to the launch file that we want to include. We don't necessarily know where this file is on our filesystem, but ROS does!</p>
+<p>We can therefore use a function called <code>get_package_share_directory()</code> (from a module called <code>ament_index_python.packages</code>) to provide us with the path to the <em>root</em> of this package directory.</p>
+<p>From there, we know that the launch file itself must exist in a <code>launch</code> directory, so we use the <code>os.path.join()</code> method to construct this full file path for us.</p>
+</li>
+</ol>
+<p>... Currently, the launch file above contains <em>only</em> the code necessary to include the <code>empty_world.launch.py</code> launch file into our <code>circle.launch.py</code> launch description. There's a few new things that have been introduced here to achieve this, so click on the <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> icons in the code above to find out what all these things are doing.</p>
+</li>
+<li>
+<p>Now, add a <code>Node()</code> item to the launch description so that the <code>move_circle.py</code> node (from your <code>part2_navigation</code> package) is launched <em>after</em> the "Empty World" simulation has been launched.</p>
+<p>Refer back to Exercise 1 for a reminder on how to do this.</p>
+</li>
+<li>
+<p>When you're ready, remember to <a href="#colcon-build">run <code>colcon build</code> again</a> <em>before</em> attempting to execute your new <code>circle.launch.py</code> launch file:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>part3_beyond_basics<span class="w"> </span>circle.launch.py
+</code></pre></div></p>
+<hr />
+</li>
+</ol>
+<p>If you've done this successfully, on launching the above command the Gazebo Empty World simulation should launch and, once it's loaded up, the robot should instantly start moving around in a circle (while printing information to <strong>TERMINAL 1</strong> at the same time).</p>
+<p>We've learnt some key launch file techniques now, so let's move on to another more advanced and very important topic...</p>
+<h2 id="lidar">Laser Displacement Data and The LiDAR Sensor<a class="headerlink" href="#lidar" title="Permanent link">&para;</a></h2>
+<p>As you'll know from Part 2, odometry is really important for robot navigation, but it can be subject to drift and accumulated error over time. You may have observed this in simulation during <a href="../part2/#ex5">Part 2 Exercise 5</a>, and you would most certainly notice it if you were to do the same on a real robot. Fortunately, The Waffles have another sensor on-board which provides even richer information about the environment, and we can use this to supplement the odometry information and enhance the robot's navigation capabilities.</p>
+<h3 id="introducing-the-laserscan-interface">Introducing the LaserScan Interface<a class="headerlink" href="#introducing-the-laserscan-interface" title="Permanent link">&para;</a></h3>
+<h4 id="ex3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44s-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3z"/></svg></span> Exercise 3: Using RViz to Visualise LaserScan Data<a class="headerlink" href="#ex3" title="Permanent link">&para;</a></h4>
+<p><a name="rviz"></a>We're now going to place the robot in a more interesting environment than the "empty world" that we've been working with so far...</p>
+<ol>
+<li>
+<p>In <strong>TERMINAL 1</strong> enter the following command to launch this:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_gazebo<span class="w"> </span>turtlebot3_world.launch.py
+</code></pre></div></p>
+<hr />
+<p>A Gazebo simulation should now be launched with a TurtleBot3 Waffle in a new environment:</p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../images/gz/tb3_world.jpg" width="600px" /></a>
+</figure></p>
+</li>
+<li>
+<p>Open a new terminal instance (<strong>TERMINAL 2</strong>) and enter the following:</p>
+<hr />
+<p><strong>TERMINAL 2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>tuos_simulations<span class="w"> </span>rviz.launch.py
+</code></pre></div></p>
+<hr />
+<p>On running the command a new window should open:</p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../images/rviz/tb3.png" width="600px" /></a>
+</figure></p>
+<p>This is <em>RViz</em>, which is a ROS tool that allows us to <em>visualise</em> the data being measured by a robot in real-time. </p>
+<p>The green dots scattered around the robot represent <em>laser displacement data</em> which is measured by the LiDAR sensor located on the top of the robot, allowing it to measure the <em>distance</em> to any obstacles in its surroundings. </p>
+<p>The LiDAR sensor spins continuously, sending out laser pulses as it does so. These laser pulses are reflected from any objects and sent back to the sensor. Distance can then be determined based on the time it takes for the pulses to complete the full journey (from the sensor, to the object, and back again), by a process called <em>"time of flight"</em>. Because the LiDAR sensor spins and performs this process continuously, a full 360&deg; scan of the environment can be generated.</p>
+<p>In this case (because we are working in simulation here) the data represents the objects surrounding the robot in its <em>simulated environment</em>, so you should notice that the green dots produce an outline that resembles the objects in the world that is being simulated in Gazebo (or partially at least).</p>
+</li>
+<li>
+<p>Next, open up a new terminal instance (<strong>TERMINAL 3</strong>). Laser displacement data from the LiDAR sensor is published by the robot to the <code>/scan</code> topic. We can use the <code>ros2 topic info</code> command to find out more about the nodes that are publishing and subscribing to this topic, as well as the <em>type of interface</em> used to transmit this topic data:</p>
+<hr />
+<p><strong>TERMINAL 3:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>info<span class="w"> </span>/scan
+</code></pre></div>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>Type: sensor_msgs/msg/LaserScan
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>Publisher count: 1
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>Subscription count: 0
+</code></pre></div></p>
+<hr />
+</li>
+<li>
+<p>As we can see from above, <code>/scan</code> data is of the <code>sensor_msgs/msg/LaserScan</code> type, and we can find out more about this interface using the <code>ros2 interface show</code> command:</p>
+<hr />
+<p><strong>TERMINAL 3:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>ros2<span class="w"> </span>interface<span class="w"> </span>show<span class="w"> </span>sensor_msgs/msg/LaserScan
+</code></pre></div>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a># Single scan from a planar laser range-finder
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>std_msgs/Header header # timestamp in the header is the acquisition time of
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>        builtin_interfaces/Time stamp
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>                int32 sec
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>                uint32 nanosec
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>        string frame_id
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>                             # the first ray in the scan.
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>                             #
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>                             # in frame frame_id, angles are measured around
+<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>                             # the positive Z axis (counterclockwise, if Z is up)
+<a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a>                             # with zero angle being forward along the x axis
+<a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a>
+<a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a>float32 angle_min            # start angle of the scan [rad]
+<a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a>float32 angle_max            # end angle of the scan [rad]
+<a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a>float32 angle_increment      # angular distance between measurements [rad]
+<a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a>
+<a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a>float32 time_increment       # time between measurements [seconds] - if your scanner
+<a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a>                             # is moving, this will be used in interpolating position
+<a id="__codelineno-34-20" name="__codelineno-34-20" href="#__codelineno-34-20"></a>                             # of 3d points
+<a id="__codelineno-34-21" name="__codelineno-34-21" href="#__codelineno-34-21"></a>float32 scan_time            # time between scans [seconds]
+<a id="__codelineno-34-22" name="__codelineno-34-22" href="#__codelineno-34-22"></a>
+<a id="__codelineno-34-23" name="__codelineno-34-23" href="#__codelineno-34-23"></a>float32 range_min            # minimum range value [m]
+<a id="__codelineno-34-24" name="__codelineno-34-24" href="#__codelineno-34-24"></a>float32 range_max            # maximum range value [m]
+<a id="__codelineno-34-25" name="__codelineno-34-25" href="#__codelineno-34-25"></a>
+<a id="__codelineno-34-26" name="__codelineno-34-26" href="#__codelineno-34-26"></a>float32[] ranges             # range data [m]
+<a id="__codelineno-34-27" name="__codelineno-34-27" href="#__codelineno-34-27"></a>                             # (Note: values &lt; range_min or &gt; range_max should be discarded)
+<a id="__codelineno-34-28" name="__codelineno-34-28" href="#__codelineno-34-28"></a>float32[] intensities        # intensity data [device-specific units].  If your
+<a id="__codelineno-34-29" name="__codelineno-34-29" href="#__codelineno-34-29"></a>                             # device does not provide intensities, please leave
+<a id="__codelineno-34-30" name="__codelineno-34-30" href="#__codelineno-34-30"></a>                             # the array empty.
+</code></pre></div></p>
+<hr />
+</li>
+</ol>
+<h3 id="interpreting-laserscan-data">Interpreting LaserScan Data<a class="headerlink" href="#interpreting-laserscan-data" title="Permanent link">&para;</a></h3>
+<p>The <code>LaserScan</code> interface is a standardised ROS message interface (from the <code>sensor_msgs</code> package) that any ROS Robot can use to publish data that it obtains from a Laser Displacement Sensor such as the LiDAR on the TurtleBot3.  </p>
+<p><code>ranges</code> is an array of <code>float32</code> values (array data-types are suffixed with <code>[]</code>). This is the part of the message containing all the <em>actual distance measurements</em> that are being obtained by the LiDAR sensor (in meters).</p>
+<p><a name="fig_lidar"></a>Consider a simplified example here, taken from a TurtleBot3 robot in a different environment:</p>
+<figure>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../images/rviz/lidar_illustrated.png" /></a></p>
+</figure>
+<p><a name="echo_scan_variables"></a>As illustrated in the figure, we can associate each data-point of the <code>ranges</code> array to an <em>angular position</em> by using the <code>angle_min</code>, <code>angle_max</code> and <code>angle_increment</code> values that are also provided within the <code>LaserScan</code> message.  We can use the <code>ros2 topic echo</code> command to find out what their values are:</p>
+<p><div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>$ ros2 topic echo /scan --field angle_min --once
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>0.0
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>---
+</code></pre></div>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>$ ros2 topic echo /scan --field angle_max --once
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>6.28000020980835
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>---
+</code></pre></div>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>$ ros2 topic echo /scan --field angle_increment --once
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>0.01749303564429283
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>---
+</code></pre></div></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What do these values represent? (Compare them with <a href="#fig_lidar">the figure above</a>)</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Notice how we were able to access <em>specific variables</em> within the <code>/scan</code> data using the <code>--field</code> flag, and ask the command to only provide us with a single message by using <code>--once</code>?</p>
+</div>
+<p>The <code>ranges</code> array contains 360 values in total, i.e. a distance measurement at every 1&deg; (an <code>angle_increment</code> of 0.0175 radians) around the robot. The first value in the <code>ranges</code> array (<code>ranges[0]</code>) is the distance to the nearest object directly in front of the robot (i.e. at &theta; = 0 radians, or <code>angle_min</code>). The last value in the <code>ranges</code> array (<code>ranges[359]</code>) is the distance to the nearest object at 359&deg; (i.e. &theta; = 6.283 radians, or <code>angle_max</code>) from the front of the robot, i.e.: 1 degree to the <em>right</em> of the X-axis. <code>ranges[65]</code>, for example, would represent the distance to the closest object at an angle of 65&deg; (1.138 radians) from the front of the robot (<em>anti-clockwise</em>), as shown in <a href="#fig_lidar">the figure</a>.</p>
+<p><a name="range_max_min"></a>The <code>LaserScan</code> message also contains the parameters <code>range_min</code> and <code>range_max</code>, which represent the <em>minimum</em> and <em>maximum</em> distances (again, in meters) that the LiDAR sensor can detect, respectively. Use the <code>ros2 topic echo</code> command to report these directly too.  </p>
+<div class="admonition question">
+<p class="admonition-title">Questions</p>
+<ol>
+<li>What <em>is</em> the maximum and minimum range of the LiDAR sensor? Use <a href="#echo_scan_variables">the same technique as we used above</a> to find out.</li>
+<li>
+<p>Consider the note against <code>ranges</code> in the <code>ros2 interface show</code> output earlier:</p>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>float32[] ranges    # range data [m]
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>                    # (Note: values &lt; range_min or &gt; range_max should be discarded)
+</code></pre></div>
+<p>(this might be worth thinking about).</p>
+</li>
+</ol>
+</div>
+<p>Finally, use the <code>ros2 topic echo</code> command again to display the <code>ranges</code> portion of the <code>LaserScan</code> data. There's a lot of data here (360 data points per message in fact, as you know from above!):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>ros2 topic echo /scan --field ranges
+</code></pre></div>
+<p>We're dropping the <code>--once</code> option now, so that we can see the data as it comes in, in <em>real-time</em>.  You might need to expand the terminal window so that you can see all the data points; data will be bound by square brackets <code>[]</code>, and there should be a <code>---</code> at the end of each message too, to help you confirm that you are viewing the whole thing.</p>
+<p>The main thing you'll notice here is that there's lots of information, and it changes rapidly! As you have already seen though, it is the numbers that are flying by here that are represented by green dots in RViz.  Head back to the RViz screen to have another look at this now. As you'll no doubt agree, this is a much more useful way to visualise the <code>ranges</code> data, and illustrates how useful RViz can be for interpreting what your robot can <em>see</em> in real-time.</p>
+<p>What you may also notice is several <code>inf</code> values scattered around the array.  These represent sensor readings that are outside the sensor's measurement range (i.e. <em>greater than</em> <code>range_max</code> or <em>less than</em> <code>range_min</code>), so the sensor can't report a distance measurement in such cases. Remember from above: </p>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>(Note: values &lt; range_min or &gt; range_max should be discarded)
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This behaviour is different on the real robots! <strong>Be aware of this when developing code for real robots</strong>!!</p>
+</div>
+<p>Stop the <code>ros2 topic echo</code> command from running in the terminal window by entering <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> in <strong>TERMINAL 3</strong>. Also close down the RViz process running in <strong>TERMINAL 2</strong> now as well, but leave the simulation (in <strong>TERMINAL 1</strong> running). </p>
+<h4 id="ex4"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44s-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3z"/></svg></span> Exercise 4: Building a LaserScan Callback Function<a class="headerlink" href="#ex4" title="Permanent link">&para;</a></h4>
+<p>LaserScan data presents us with a new challenge: processing large datasets. In this exercise we'll look at some basic approaches that can be taken to deal with this data, and get something meaningful out of it that can be used in your robot applications.</p>
+<ol>
+<li>
+<p>Navigate into the <code>scripts</code> folder of your <code>part3_beyond_basics</code> package:</p>
+<hr />
+<p><strong>TERMINAL 2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>colcon_cd<span class="w"> </span>part3_beyond_basics<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>scripts/
+</code></pre></div></p>
+<hr />
+</li>
+<li>
+<p>Create a new node called <code>lidar_subscriber.py</code>:</p>
+<hr />
+<p><strong>TERMINAL 2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>touch<span class="w"> </span>lidar_subscriber.py
+</code></pre></div></p>
+<p>and give this <em>execute</em> permissions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>lidar_subscriber.py
+</code></pre></div>
+<hr />
+</li>
+<li>
+<p>Declare this as a package executable by opening up your package's <code>CMakeLists.txt</code> in VS Code, and replacing <code>minimal_node.py</code> with <code>lidar_subscriber.py</code> as shown below:</p>
+<div class="highlight"><span class="filename">CMakeLists.txt</span><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a># Install Python executables
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>install(PROGRAMS
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>  scripts/lidar_subscriber.py
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>  DESTINATION lib/${PROJECT_NAME}
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>)
+</code></pre></div>
+</li>
+<li>
+<p>Then, add some new dependencies to your package's <code>package.xml</code> file, so open this up in VS Code too. Below the <code class="highlight"><span class="nt">&lt;exec_depend&gt;</span>rclpy<span class="nt">&lt;/exec_depend&gt;</span></code> line, add the following:</p>
+<div class="highlight"><span class="filename">package.xml</span><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nt">&lt;exec_depend&gt;</span>rclpy<span class="nt">&lt;/exec_depend&gt;</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="nt">&lt;exec_depend&gt;</span>sensor_msgs<span class="nt">&lt;/exec_depend&gt;</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="nt">&lt;exec_depend&gt;</span>python3-numpy<span class="nt">&lt;/exec_depend&gt;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Head back to the terminal and use Colcon to build this (even though <code>lidar_subscriber.py</code> is still just an empty file at this stage):</p>
+<hr />
+<p><strong>TERMINAL 2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nb">cd</span><span class="w"> </span>~/ros2_ws/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>part3_beyond_basics<span class="w"> </span>--symlink-install
+</code></pre></div></p>
+<p>And after that, re-source your <code>.bashrc</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</code></pre></div>
+<hr />
+</li>
+<li>
+<p>With all of that out of the way, it's time to start building the <code>lidar_subscriber.py</code> Python Node! Open up the file in VS Code, then <a href="lidar_subscriber/">follow the steps here</a> to construct it. <a name="ex4_ret"></a></p>
+</li>
+<li>
+<p>Once you're happy with what's going on with this, run the node using <code>ros2 run</code>:</p>
+<hr />
+<p><strong>TERMINAL 2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>part3_beyond_basics<span class="w"> </span>lidar_subscriber.py
+</code></pre></div></p>
+<hr />
+</li>
+<li>
+<p>Open another terminal (so you can still see the outputs from your <code>lidar_subscriber.py</code> node). Launch the <code>teleop_keyboard</code> node, and drive the robot around, noting how the outputs from your <code>lidar_subscriber.py</code> node change as you do so.</p>
+</li>
+<li>
+<p>Close everything down now (including the simulation running in <strong>TERMINAL 1</strong>). Then launch the "empty world" simulation again:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>turtlebot3_gazebo<span class="w"> </span>empty_world.launch.py
+</code></pre></div></p>
+<hr />
+</li>
+<li>
+<p>Go back to <strong>TERMINAL 2</strong> and launch your <code>lidar_subscriber.py</code> node again:</p>
+<hr />
+<p><strong>TERMINAL 2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>part3_beyond_basics<span class="w"> </span>lidar_subscriber.py
+</code></pre></div></p>
+<hr />
+<p>What output do you see from this now?</p>
+<p>You should notice that your <code>lidar_subscriber.py</code> node reports <code>nan meters</code> now. That's because there's nothing in the environment for the LiDAR sensor to detect, so <em>all</em> readings are out of range and hence our analysis of the 40&deg; arc of LiDAR readings at the front of the robot has filtered out <em>everything</em> and therefore returned <code>nan</code> (not a number).</p>
+</li>
+<li>
+<p>Use the <strong>Box</strong> tool in Gazebo to place a box in the environment. </p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../images/gz/toolbars_antd.png" width="800px" /></a>
+</figure></p>
+</li>
+<li>
+<p>Click the <strong>Translate</strong> tool to move the box around until the <code>lidar_subscriber.py</code> node returns some reading that <em>aren't</em> <code>nan</code> again.</p>
+</li>
+<li>
+<p>Move the box around some more to observe what our analysis of the <code>LaserScan</code> data <em>can</em> detect, and where the box falls out of the detectable range.</p>
+</li>
+<li>
+<p>Think about how you could adapt the callback function of the <code>lidar_subscriber.py</code> node so that it picks up on more than one <code>LaserScan</code> subset, so that it could detect situations such as this (for example):</p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="lidar_subscriber_adv.png" width="800px" /></a>
+</figure></p>
+</li>
+</ol>
+<h2 id="slam">Simultaneous Localisation and Mapping (SLAM)<a class="headerlink" href="#slam" title="Permanent link">&para;</a></h2>
+<p>In combination, the data from the LiDAR sensor and the robot's odometry (the robot <em>pose</em> specifically) are really powerful, and allow some very useful conclusions to be made about the environment a robot is operating within.  One of the key applications of this data is <em>"Simultaneous Localisation and Mapping"</em>, or <em>SLAM</em>.  This is a tool that's built into ROS, and allows a robot to build up a map of its environment and locate itself within that map at the same time!  We'll now look at how easy it is to leverage this in ROS.</p>
+<h4 id="ex5"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c-.34.34-.67.67-.68 1-.03.32.31.65.63.96.48.5.95.95.93 1.44s-.53 1-1.04 1.5l-4.13 4.14L15 14.66l4.25-4.24-.96-.96-1.42 1.41-3.75-3.75 3.84-3.83c.39-.39 1.04-.39 1.41 0l2.34 2.34c.39.37.39 1.02 0 1.41M3 17.25l9.56-9.57 3.75 3.75L6.75 21H3z"/></svg></span> Exercise 5: Building a map of an environment with SLAM<a class="headerlink" href="#ex5" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p>Close down all ROS processes that are running now by entering <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> in each terminal. </p>
+</li>
+<li>
+<p>We're going to launch our robot into <em>another</em> new simulated environment now, which we'll be creating a map of using SLAM! To launch the simulation enter the following command in <strong>TERMINAL 1</strong>:</p>
+<hr />
+<p><strong>TERMINAL 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>tuos_simulations<span class="w"> </span>nav_world.launch.py
+</code></pre></div></p>
+<hr />
+<p>The environment that launches should look like this:</p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="nav_world.jpg" width="800px" /></a>
+</figure></p>
+</li>
+<li>
+<p>Now launch SLAM to start building a map of this environment. In <strong>TERMINAL 2</strong>, launch SLAM as follows:</p>
+<hr />
+<p><strong>TERMINAL 2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>tuos_simulations<span class="w"> </span>cartographer.launch.py
+</code></pre></div></p>
+<hr />
+<p>This will launch RViz again, where you should see a top-down view of an environment with a model of the robot, surrounded by some red/green dots representing the real-time LiDAR data. </p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="cartographer_rviz.png" width="600px" /></a>
+</figure></p>
+<p>SLAM has already started building a map of the boundaries that are currently visible to the robot, based on its starting position in the environment. </p>
+<p>If you leave this for a minute the walls of the arena will start to become visible in RViz, and the floor will start to turn a lighter grey. As time passes the SLAM algorithms are becoming more certain of what is being observed in the environment, and are starting to determine what is free space, and where the boundaries are.</p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="cartographer_rviz_progressed.png" width="600px" /></a>
+</figure></p>
+</li>
+<li>
+<p>In <strong>TERMINAL 3</strong> launch the <code>teleop_keyboard</code> node (<a href="../part2/#teleop">you should know how to do this by now</a>). Re-arrange and re-size your windows so that you can see Gazebo, RViz <em>and</em> the <code>teleop_keybaord</code> terminal instances all at the same time:</p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="slam_windows.png" width="800px" /></a>
+</figure></p>
+</li>
+<li>
+<p>Drive the robot around the arena slowly, using the <code>teleop_keyboard</code> node, and observe the map being updated in the RViz window as you do so. </p>
+</li>
+<li>
+<p>As you're doing this open up <em>another</em> terminal instance (<strong>TERMINAL 4</strong>) and run the <code>odom_subscriber.py</code> node that you created back in Part 2:</p>
+<hr />
+<p><strong>TERMINAL 4:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>part2_navigation<span class="w"> </span>odom_subscriber.py
+</code></pre></div></p>
+<hr />
+<p>This will provide you with the robot's <code>X</code> and <code>Y</code> coordinates (in meters) within the environment, as you are driving it around, and you can use this to determine the centre coordinates of the four circles (A, B, C &amp; D) that are printed on the arena floor. </p>
+<p>Drive your robot into each of these circular zones and stop the robot inside them.    </p>
+<p><a name="goal_coords"></a>Record the zone marker coordinates in a table such as the one below.</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Zone</th>
+<th style="text-align: center;">X Position (m)</th>
+<th style="text-align: center;">Y Position (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">START</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">-0.04</td>
+</tr>
+<tr>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+</li>
+<li>
+<p>Drive the robot around until a full map of the environment has been generated.</p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="slam_steps.png" width="800px" /></a>
+</figure></p>
+</li>
+<li>
+<p>Once you're happy that your robot has built a complete map of the environment (and you've got the coordinates of all the circles), you can then save your map for later use. We do this using a ROS <code>map_server</code> package.  First, stop the robot by pressing <span class="keys"><kbd class="key-s">S</kbd></span> in <strong>TERMINAL 3</strong> and then enter <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> to shut down the <code>teleop_keyboard</code> node.</p>
+</li>
+<li>
+<p>Then, remaining in <strong>TERMINAL 3</strong>, navigate to the root of your <code>part3_beyond_basics</code> package directory and create a new folder in it called <code>maps</code>:</p>
+<hr />
+<p><strong>TERMINAL 3:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="nb">cd</span><span class="w"> </span>~/ros2_ws/src/part3_beyond_basics/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>mkdir<span class="w"> </span>maps
+</code></pre></div></p>
+<hr />
+</li>
+<li>
+<p>Navigate into this new directory:</p>
+<hr />
+<p><strong>TERMINAL 3:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="nb">cd</span><span class="w"> </span>maps/
+</code></pre></div></p>
+<hr />
+</li>
+<li>
+<p>Then, run the <code>map_saver_cli</code> node from the <code>map_server</code> package to save a copy of your map: <a name="map-saver-cli"></a></p>
+<hr />
+<p><strong>TERMINAL 3:</strong>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>nav2_map_server<span class="w"> </span>map_saver_cli<span class="w"> </span>-f<span class="w"> </span>MAP_NAME
+</code></pre></div>
+Replacing <code>MAP_NAME</code> with a name of your choosing. </p>
+<hr />
+<p>This will create two files: a <code>MAP_NAME.pgm</code> and a <code>MAP_NAME.yaml</code> file, both of which contain data related to the map that you have just created.  The <code>.pgm</code> file contains an <em>Occupancy Grid Map (OGM)</em>, which is used for <em>autonomous navigation</em> in ROS.  Have a look at the map by launching it in an Image Viewer Application called <code>eog</code>:</p>
+<hr />
+<p><strong>TERMINAL 3:</strong>
+<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>eog<span class="w"> </span>MAP_NAME.pgm
+</code></pre></div></p>
+<hr />
+<p>A new window should launch containing the map you have just created with SLAM and the <code>map_saver_cli</code> node: </p>
+<p><figure markdown>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="slam_map.png" width="300px" /></a>
+</figure></p>
+<p>White regions represent the area that your robot has determined is open space and that it can freely move within.  Black regions, on the other hand, represent boundaries or objects that have been detected.  Any grey area on the map represents regions that remain unexplored, or that were inaccessible to the robot.</p>
+</li>
+<li>
+<p>Compare the map generated by SLAM to the real simulated environment. In a simulated environment this process should be pretty accurate, and the map should represent the simulated environment very well (unless you didn't allow your robot to travel around and see the whole thing!)  In a real environment this is often not the case.  </p>
+<div class="admonition question">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>How accurately did your robot map the environment?</li>
+<li>What might impact this when working in a real-world environment?</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Close the image using the <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12 6.47 2 12 2m3.59 5L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg></span> button on the right-hand-side of the <em>eog</em> window.</p>
+</li>
+</ol>
+<h4 id="summary-of-slam">Summary of SLAM<a class="headerlink" href="#summary-of-slam" title="Permanent link">&para;</a></h4>
+<p>See how easy it was to map an environment in the previous exercise? This works just as well on a real robot in a real environment too (as you will observe in <a href="../../../waffles/basics/#exSlam">one of the Real Waffle "Getting Started Exercises"</a>). </p>
+<p>This illustrates the power of ROS: having access to tools such as SLAM, which are built into the ROS framework, makes it really quick and easy for a robotics engineer to start developing robotic applications on top of this. Our job was made even easier here since we used some packages that had been pre-made by the manufacturers of our TurtleBot3 Robots to help us launch SLAM with the right configurations for our exact robot.  If you were developing a robot yourself, or working with a different type of robot, then you might need to do a bit more work in setting up and tuning the SLAM tools to make them work for your own application.</p>
+<h2 id="wrapping-up">Wrapping Up<a class="headerlink" href="#wrapping-up" title="Permanent link">&para;</a></h2>
+<p>As we learnt in Part 2, a robot's odometry is determined by dead-reckoning and control algorithms based on this alone (like the <code>move_square.py</code> node) may be subject to drift and accumulated error. </p>
+<p>Ultimately then, a robot needs additional information to pinpoint its precise location within an environment, and thus enhance its ability to navigate effectively and avoid crashing into things!</p>
+<p>This additional information can come from a LiDAR sensor, which you learnt about in this session. We explored where this data is published to, how we access it, and what it tells us about a robot's immediate environment.  We then looked at some ways odometry and laser displacement data can be combined to perform advanced robotic functions such as the mapping of an environment. This is all complicated stuff but, using ROS, we can leverage these tools with relative ease, which illustrates just how powerful ROS can be for developing robotic applications quickly and effectively without having to re-invent the wheel!</p>
+<h3 id="backup">WSL-ROS2 Managed Desktop Users: Save your work!<a class="headerlink" href="#backup" title="Permanent link">&para;</a></h3>
+<p>Remember, the work you have done in the WSL-ROS2 environment during this session <strong>will not be preserved</strong> for future sessions or across different University machines automatically! To save the work you have done here today you should now run the following script in any idle WSL-ROS2 Terminal Instance:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>wsl_ros<span class="w"> </span>backup
+</code></pre></div>
+<p>This will export your home directory to your University <code>U:\</code> Drive, allowing you to restore it on another managed desktop machine the next time you fire up WSL-ROS2.  </p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-14T13:52:12+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-14</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-14T13:52:12+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-14</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../part2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Part 2 (Essential): Odometry &amp; Navigation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Part 2 (Essential): Odometry & Navigation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../part4/" class="md-footer__link md-footer__link--next" aria-label="Next: Part 4 (Optional): Services">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Part 4 (Optional): Services
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="../../../assets/external/i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br />  &copy; <a href="https://www.sheffield.ac.uk/engineering/diamond-engineering/our-staff/tom-howard">Tom Howard</a>, The University of Sheffield, 2025.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="../../../https:/polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="../../../assets/external/cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
+    try {
+        var img = element.querySelector('img');
+        if (img && img.src) {
+            element.setAttribute('href', img.src);
+        } else {
+            console.log('No img element with src attribute found');
+        }
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
