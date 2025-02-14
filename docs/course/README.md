@@ -1,20 +1,20 @@
 ---
-title: COM2009 Course Assignments
-description: "Course Material for Assignments #1 and #2"
+title: The ACS6121 Labs
+description: "Lab Materials for the ACS6121 Robotics Labs"
 ---
 
-# COM2009 Course Assignments
+# The ACS6121 Labs
 
-For the COM2009 Robotics course you must complete two lab assignments:
+The labs for ACS6121 are split into two parts:
 
-* [**Assignment #1**: "An Introduction to ROS (the Robot Operating System)"](./assignment1/README.md).
+* [**Simulation Labs**: "An Introduction to ROS (the Robot Operating System)"](./sim/README.md).
 
     *Here you will learn what ROS is and how to use it. You will complete this assignment individually, and in your own time.*
 
-    **Weighting**: 25% of the overall COM2009 module mark.
+    **Weighting**: 20% of the overall ACS6121 module mark.
 
-* [**Assignment #2**: "Team Robotics Project"](./assignment2/README.md).
+* **Real Robot Labs**: "Team Robotics Project".
 
-    *Here you will work in teams of 3-4 to complete a series of real-world robotics tasks using our Tutlebot3 Waffle Robots in the Lab (Diamond Computer Room 5).*
+    *Here you will work in teams of 3/4 to complete a real-world robotics task using our Tutlebot3 Waffle Robots in the Lab (Diamond Computer Room 5).*
 
-    **Weighting**: 30% of the overall COM2009 module mark
+    **Weighting**: 20% of the overall ACS6121 module mark

@@ -12,7 +12,7 @@ WSL-ROS2 is **pre-installed** on all machines in the following Computer Rooms in
 
 * Computer Rooms 1, 2, 4 & 6
 * Short Term Loan Laptops in Computer Room 5
-* 40 dedicated *WSL-ROS laptops* (made available in Computer Room 5 during the COM2009 lab sessions)
+* 40 dedicated *WSL-ROS laptops* (made available in Computer Room 5 during the lab sessions)
 
 ## Other Campus Computer Rooms {#other}  
 

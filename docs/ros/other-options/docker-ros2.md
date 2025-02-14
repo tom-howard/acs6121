@@ -9,7 +9,7 @@ title: Installing "docker-ros2" for Linux, Mac (and Windows)
 
 ## Acknowledgments
 
-This solution has been put together by Atri Hegde, a COM2009 student from 2024 (and a course demonstrator in 2025!)
+This solution has been put together by Atri Hegde, a former COM2009 undergraduate student (from 2024).
 
 **Thanks Atri**!!
 

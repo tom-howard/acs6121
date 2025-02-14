@@ -2,13 +2,13 @@
 title: Accessing ROS for this Course
 ---
 
-In order to engage with [the COM2009 Course Assignments](../course/README.md) you'll need access to a ROS environment. [As discussed here](../about/robots.md#software), the course is designed around the eighth version of ROS 2: **Humble Hawksbill**. 
+In order to fully engage with [the ACS6121 Lab Course](../course/README.md) you'll need access to a ROS environment. [As discussed here](../about/robots.md#software), the course is designed around the eighth version of ROS 2: **Humble Hawksbill**. 
 
 ROS can be a bit tricky to install, and is primarily supported on only a handful of *"Tier 1"* operating systems ([as listed here](https://docs.ros.org/en/humble/Installation.html){target="_blank"}), the first choice being Ubuntu 22.04. While Windows 10 is also a supported OS (natively), we strongly recommend actually installing via the Windows Subsystem for Linux (WSL) running an Ubuntu 22.04 distro. In order to install or access ROS for this course, we recommend one of the following options. Click on the relevant link below to access the associated instructions:
 
 ## WSL-ROS2 (Windows)
 
-We've created our own custom ROS2 (Humble) and Ubuntu (22.04) environment for WSL specifically for this course, which we call **"WSL-ROS2"**. The environment contains all the tools and ROS packages that you will need for COM2009. 
+We've created our own custom ROS2 (Humble) and Ubuntu (22.04) environment for WSL specifically for this course, which we call **"WSL-ROS2"**. The environment contains all the tools and ROS packages that you will need for the lab course. 
 
 **This is our recommended option**, and there are two ways to access this: 
 
