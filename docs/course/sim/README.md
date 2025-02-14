@@ -1,6 +1,6 @@
 ---
 title: "Simulation Labs: An Introduction to ROS"
-description: "An individual simulation-based course to teach you all about ROS2"
+description: "An simulation-based course to teach you all about ROS 2"
 --- 
 
 ## Overview
