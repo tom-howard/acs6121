@@ -2972,7 +2972,54 @@
 </li>
 <li>
 <p>Now modify your <code>custom_msg_publisher.py</code> file as follows:</p>
-<div class="highlight"><span class="filename">custom_msg_publisher.py</span><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>
+<div class="highlight"><span class="filename">custom_msg_publisher.py</span><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="ch">#!/usr/bin/env python3</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
+<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>
+<a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">part1_pubsub.msg</span><span class="w"> </span><span class="kn">import</span> <span class="n">Example</span> <span class="c1"># (1)!</span>
+<a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a>
+<a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">SimplePublisher</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<a id="__codelineno-66-9" name="__codelineno-66-9" href="#__codelineno-66-9"></a>
+<a id="__codelineno-66-10" name="__codelineno-66-10" href="#__codelineno-66-10"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-66-11" name="__codelineno-66-11" href="#__codelineno-66-11"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;simple_publisher&quot;</span><span class="p">)</span>
+<a id="__codelineno-66-12" name="__codelineno-66-12" href="#__codelineno-66-12"></a>
+<a id="__codelineno-66-13" name="__codelineno-66-13" href="#__codelineno-66-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">my_publisher</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_publisher</span><span class="p">(</span>
+<a id="__codelineno-66-14" name="__codelineno-66-14" href="#__codelineno-66-14"></a>            <span class="n">msg_type</span><span class="o">=</span><span class="n">Example</span><span class="p">,</span> <span class="c1"># (2)!</span>
+<a id="__codelineno-66-15" name="__codelineno-66-15" href="#__codelineno-66-15"></a>            <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;my_topic&quot;</span><span class="p">,</span>
+<a id="__codelineno-66-16" name="__codelineno-66-16" href="#__codelineno-66-16"></a>            <span class="n">qos_profile</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-66-17" name="__codelineno-66-17" href="#__codelineno-66-17"></a>        <span class="p">)</span>
+<a id="__codelineno-66-18" name="__codelineno-66-18" href="#__codelineno-66-18"></a>
+<a id="__codelineno-66-19" name="__codelineno-66-19" href="#__codelineno-66-19"></a>        <span class="n">publish_rate</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Hz</span>
+<a id="__codelineno-66-20" name="__codelineno-66-20" href="#__codelineno-66-20"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_timer</span><span class="p">(</span>
+<a id="__codelineno-66-21" name="__codelineno-66-21" href="#__codelineno-66-21"></a>            <span class="n">timer_period_sec</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">publish_rate</span><span class="p">,</span>
+<a id="__codelineno-66-22" name="__codelineno-66-22" href="#__codelineno-66-22"></a>            <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timer_callback</span>
+<a id="__codelineno-66-23" name="__codelineno-66-23" href="#__codelineno-66-23"></a>        <span class="p">)</span>
+<a id="__codelineno-66-24" name="__codelineno-66-24" href="#__codelineno-66-24"></a>
+<a id="__codelineno-66-25" name="__codelineno-66-25" href="#__codelineno-66-25"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+<a id="__codelineno-66-26" name="__codelineno-66-26" href="#__codelineno-66-26"></a>            <span class="sa">f</span><span class="s2">&quot;The &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39; node is initialised.&quot;</span>
+<a id="__codelineno-66-27" name="__codelineno-66-27" href="#__codelineno-66-27"></a>        <span class="p">)</span>
+<a id="__codelineno-66-28" name="__codelineno-66-28" href="#__codelineno-66-28"></a>
+<a id="__codelineno-66-29" name="__codelineno-66-29" href="#__codelineno-66-29"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">timer_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-66-30" name="__codelineno-66-30" href="#__codelineno-66-30"></a>        <span class="n">ros_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_clock</span><span class="p">()</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">seconds_nanoseconds</span><span class="p">()</span>
+<a id="__codelineno-66-31" name="__codelineno-66-31" href="#__codelineno-66-31"></a>
+<a id="__codelineno-66-32" name="__codelineno-66-32" href="#__codelineno-66-32"></a>        <span class="n">topic_msg</span> <span class="o">=</span> <span class="n">Example</span><span class="p">()</span> <span class="c1"># (3)!</span>
+<a id="__codelineno-66-33" name="__codelineno-66-33" href="#__codelineno-66-33"></a>        <span class="n">topic_msg</span><span class="o">.</span><span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;The ROS time is...&quot;</span>
+<a id="__codelineno-66-34" name="__codelineno-66-34" href="#__codelineno-66-34"></a>        <span class="n">topic_msg</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">ros_time</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-66-35" name="__codelineno-66-35" href="#__codelineno-66-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">my_publisher</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">topic_msg</span><span class="p">)</span>
+<a id="__codelineno-66-36" name="__codelineno-66-36" href="#__codelineno-66-36"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+<a id="__codelineno-66-37" name="__codelineno-66-37" href="#__codelineno-66-37"></a>            <span class="sa">f</span><span class="s2">&quot;Publishing: &#39;</span><span class="si">{</span><span class="n">topic_msg</span><span class="o">.</span><span class="n">info</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">topic_msg</span><span class="o">.</span><span class="n">time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+<a id="__codelineno-66-38" name="__codelineno-66-38" href="#__codelineno-66-38"></a>        <span class="p">)</span>
+<a id="__codelineno-66-39" name="__codelineno-66-39" href="#__codelineno-66-39"></a>
+<a id="__codelineno-66-40" name="__codelineno-66-40" href="#__codelineno-66-40"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-66-41" name="__codelineno-66-41" href="#__codelineno-66-41"></a>    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+<a id="__codelineno-66-42" name="__codelineno-66-42" href="#__codelineno-66-42"></a>    <span class="n">my_simple_publisher</span> <span class="o">=</span> <span class="n">SimplePublisher</span><span class="p">()</span>
+<a id="__codelineno-66-43" name="__codelineno-66-43" href="#__codelineno-66-43"></a>    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">my_simple_publisher</span><span class="p">)</span>
+<a id="__codelineno-66-44" name="__codelineno-66-44" href="#__codelineno-66-44"></a>    <span class="n">my_simple_publisher</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
+<a id="__codelineno-66-45" name="__codelineno-66-45" href="#__codelineno-66-45"></a>    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+<a id="__codelineno-66-46" name="__codelineno-66-46" href="#__codelineno-66-46"></a>
+<a id="__codelineno-66-47" name="__codelineno-66-47" href="#__codelineno-66-47"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<a id="__codelineno-66-48" name="__codelineno-66-48" href="#__codelineno-66-48"></a>    <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 <ol>
 <li>
