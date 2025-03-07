@@ -6,32 +6,32 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Practical Robotics Labs for ACS6121, with ROS2 and the TurtleBot3 Waffle.">
+        <meta name="description" content="Apply your ROS2 knowledge to real TurtleBot3 Waffles in the lab.">
       
       
       
-        <link rel="canonical" href="https://tom-howard.github.io/acs6121/course/sim/part4/number_game_client/">
+        <link rel="canonical" href="https://tom-howard.github.io/acs6121/course/robot/">
       
       
-        <link rel="prev" href="../../part3/lidar_subscriber/">
+        <link rel="prev" href="../extras/launch-files/">
       
       
-        <link rel="next" href="../../part5/explore_server/">
+        <link rel="next" href="../sim/">
       
       
-      <link rel="icon" href="../../../../assets/tuos_logo.svg">
+      <link rel="icon" href="../../assets/tuos_logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
-        <title>Creating a Python Service Client - Lab Material for ACS6121</title>
+        <title>Team Assignment: Real World Exploration - Lab Material for ACS6121</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -45,16 +45,16 @@
         
         
         
-        <link rel="stylesheet" href="../../../../assets/external/fonts.googleapis.com/css.c3479dc1.css">
+        <link rel="stylesheet" href="../../assets/external/fonts.googleapis.com/css.c3479dc1.css">
         <style>:root{--md-text-font:"Source Sans Pro";--md-code-font:"Source Code Pro"}</style>
       
     
     
-      <link rel="stylesheet" href="../../../../css/timeago.css">
+      <link rel="stylesheet" href="../../css/timeago.css">
     
-      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,11 +63,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Creating a Python Service Client - Lab Material for ACS6121" >
+        <meta  property="og:title"  content="Team Assignment: Real World Exploration - Lab Material for ACS6121" >
       
-        <meta  property="og:description"  content="Practical Robotics Labs for ACS6121, with ROS2 and the TurtleBot3 Waffle." >
+        <meta  property="og:description"  content="Apply your ROS2 knowledge to real TurtleBot3 Waffles in the lab." >
       
-        <meta  property="og:image"  content="https://tom-howard.github.io/acs6121/assets/images/social/course/sim/part4/number_game_client.png" >
+        <meta  property="og:image"  content="https://tom-howard.github.io/acs6121/assets/images/social/course/robot/README.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -75,19 +75,19 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://tom-howard.github.io/acs6121/course/sim/part4/number_game_client/" >
+        <meta  property="og:url"  content="https://tom-howard.github.io/acs6121/course/robot/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Creating a Python Service Client - Lab Material for ACS6121" >
+        <meta  name="twitter:title"  content="Team Assignment: Real World Exploration - Lab Material for ACS6121" >
       
-        <meta  name="twitter:description"  content="Practical Robotics Labs for ACS6121, with ROS2 and the TurtleBot3 Waffle." >
+        <meta  name="twitter:description"  content="Apply your ROS2 knowledge to real TurtleBot3 Waffles in the lab." >
       
-        <meta  name="twitter:image"  content="https://tom-howard.github.io/acs6121/assets/images/social/course/sim/part4/number_game_client.png" >
+        <meta  name="twitter:image"  content="https://tom-howard.github.io/acs6121/assets/images/social/course/robot/README.png" >
       
     
     
-   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -96,7 +96,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -114,6 +114,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -124,9 +129,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Lab Material for ACS6121" class="md-header__button md-logo" aria-label="Lab Material for ACS6121" data-md-component="logo">
+    <a href="../.." title="Lab Material for ACS6121" class="md-header__button md-logo" aria-label="Lab Material for ACS6121" data-md-component="logo">
       
-  <img src="../../../../assets/tuos.png" alt="logo">
+  <img src="../../assets/tuos.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -143,7 +148,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Creating a Python Service Client
+              Team Assignment: Real World Exploration
             
           </span>
         </div>
@@ -252,7 +257,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../about/" class="md-tabs__link">
+        <a href="../../about/" class="md-tabs__link">
           
   
     
@@ -272,7 +277,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../ros/" class="md-tabs__link">
+        <a href="../../ros/" class="md-tabs__link">
           
   
     
@@ -294,7 +299,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
     
@@ -314,7 +319,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../waffles/" class="md-tabs__link">
+        <a href="../../waffles/" class="md-tabs__link">
           
   
     
@@ -349,9 +354,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Lab Material for ACS6121" class="md-nav__button md-logo" aria-label="Lab Material for ACS6121" data-md-component="logo">
+    <a href="../.." title="Lab Material for ACS6121" class="md-nav__button md-logo" aria-label="Lab Material for ACS6121" data-md-component="logo">
       
-  <img src="../../../../assets/tuos.png" alt="logo">
+  <img src="../../assets/tuos.png" alt="logo">
 
     </a>
     Lab Material for ACS6121
@@ -405,7 +410,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../about/" class="md-nav__link ">
+            <a href="../../about/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -439,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../about/robots/" class="md-nav__link">
+      <a href="../../about/robots/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -461,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../about/changelog/" class="md-nav__link">
+      <a href="../../about/changelog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -483,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../about/license/" class="md-nav__link">
+      <a href="../../about/license/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -539,7 +544,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../ros/" class="md-nav__link ">
+            <a href="../../ros/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -598,7 +603,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../ros/wsl-ros/" class="md-nav__link ">
+            <a href="../../ros/wsl-ros/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -632,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ros/wsl-ros/install/" class="md-nav__link">
+      <a href="../../ros/wsl-ros/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -654,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ros/wsl-ros/man-win/" class="md-nav__link">
+      <a href="../../ros/wsl-ros/man-win/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -709,7 +714,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../ros/other-options/" class="md-nav__link ">
+            <a href="../../ros/other-options/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -743,7 +748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ros/other-options/docker-ros2/" class="md-nav__link">
+      <a href="../../ros/other-options/docker-ros2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -765,7 +770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ros/other-options/utm/" class="md-nav__link">
+      <a href="../../ros/other-options/utm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -822,7 +827,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../ros/using-wsl-ros/" class="md-nav__link ">
+            <a href="../../ros/using-wsl-ros/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -856,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ros/using-wsl-ros/man-win/" class="md-nav__link">
+      <a href="../../ros/using-wsl-ros/man-win/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -878,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ros/using-wsl-ros/linux-term/" class="md-nav__link">
+      <a href="../../ros/using-wsl-ros/linux-term/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -900,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../ros/using-wsl-ros/vscode/" class="md-nav__link">
+      <a href="../../ros/using-wsl-ros/vscode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -967,7 +972,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -998,8 +1003,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1027,16 +1030,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../sim/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1054,7 +1057,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             Simulation Labs
@@ -1070,7 +1073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../part1/" class="md-nav__link">
+      <a href="../sim/part1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1092,7 +1095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../part2/" class="md-nav__link">
+      <a href="../sim/part2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1114,7 +1117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../part3/" class="md-nav__link">
+      <a href="../sim/part3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1136,7 +1139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../sim/part4/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1158,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../part5/" class="md-nav__link">
+      <a href="../sim/part5/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1180,7 +1183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../part6/" class="md-nav__link">
+      <a href="../sim/part6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1235,7 +1238,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../extras/" class="md-nav__link ">
+            <a href="../extras/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1269,7 +1272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../extras/launch-files/" class="md-nav__link">
+      <a href="../extras/launch-files/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1291,7 +1294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../extras/course-repo/" class="md-nav__link">
+      <a href="../extras/course-repo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1359,7 +1362,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../waffles/" class="md-nav__link ">
+            <a href="../../waffles/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1393,7 +1396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../waffles/intro/" class="md-nav__link">
+      <a href="../../waffles/intro/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1415,7 +1418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../waffles/launching-ros/" class="md-nav__link">
+      <a href="../../waffles/launching-ros/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1437,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../waffles/basics/" class="md-nav__link">
+      <a href="../../waffles/basics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1459,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../waffles/essentials/" class="md-nav__link">
+      <a href="../../waffles/essentials/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1481,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../waffles/shutdown/" class="md-nav__link">
+      <a href="../../waffles/shutdown/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1521,6 +1524,92 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teams-team-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teams &amp; Team Working
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Support
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submission Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-your-ros-package-for-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exporting your ROS Package for Submission
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#working-with-the-real-robots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working with the Real Robots
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1535,7 +1624,7 @@
 
 
   
-    <a href="https://github.com/tom-howard/acs6121/edit/main/docs/course/sim/part4/number_game_client.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/tom-howard/acs6121/edit/main/docs/course/robot/README.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1544,159 +1633,72 @@
     
       
     
-    <a href="https://github.com/tom-howard/acs6121/raw/main/docs/course/sim/part4/number_game_client.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/tom-howard/acs6121/raw/main/docs/course/robot/README.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-  <h1>Creating a Python Service Client</h1>
+  <h1>Team Assignment: Real World Exploration</h1>
 
-<p>Copy <strong>all</strong> the code below into your <code>number_game_client.py</code> file and then <strong>review the annotations</strong> to understand how it all works.</p>
-<div class="highlight"><span class="filename">number_game_client.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/usr/bin/env python3</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">rclpy</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rclpy.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">part4_services.srv</span><span class="w"> </span><span class="kn">import</span> <span class="n">MyNumberGame</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span> <span class="c1"># (1)!</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">NumberGameClient</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;number_game_client&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_client</span><span class="p">(</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>            <span class="n">srv_type</span><span class="o">=</span><span class="n">MyNumberGame</span><span class="p">,</span> 
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>            <span class="n">srv_name</span><span class="o">=</span><span class="s1">&#39;guess_the_number&#39;</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="p">)</span> <span class="c1"># (2)!</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="n">cli</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span> <span class="c1"># (3)!</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="n">cli</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            <span class="s2">&quot;-g&quot;</span><span class="p">,</span> <span class="s2">&quot;--guess&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="p">)</span> <span class="c1"># (4)!</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="n">cli</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--cheat&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="p">)</span> <span class="c1"># (5)!</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span> <span class="c1"># (6)!</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="n">timeout_sec</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>                <span class="s2">&quot;Waiting for service...&quot;</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>            <span class="p">)</span> <span class="c1"># (7)!</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">cheat</span><span class="p">):</span> <span class="c1"># (8)!</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="n">request</span> <span class="o">=</span> <span class="n">MyNumberGame</span><span class="o">.</span><span class="n">Request</span><span class="p">()</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="n">request</span><span class="o">.</span><span class="n">guess</span> <span class="o">=</span> <span class="n">guess</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="n">request</span><span class="o">.</span><span class="n">cheat</span> <span class="o">=</span> <span class="n">cheat</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="n">client</span> <span class="o">=</span> <span class="n">NumberGameClient</span><span class="p">()</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="n">client</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="sa">f</span><span class="s2">&quot;Sending the request:</span><span class="se">\n</span><span class="s2">&quot;</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="sa">f</span><span class="s2">&quot; - guess: </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">guess</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="sa">f</span><span class="s2">&quot; - cheat: </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">cheat</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="sa">f</span><span class="s2">&quot;   Awaiting response...&quot;</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="p">)</span> <span class="c1"># (9)!</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="n">future</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">guess</span><span class="p">,</span> <span class="n">client</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">cheat</span><span class="p">)</span> <span class="c1"># (10)!</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin_until_future_complete</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">future</span><span class="p">)</span> <span class="c1"># (11)!</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="c1"># (12)!</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="n">client</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="sa">f</span><span class="s2">&quot;The server has responded with:</span><span class="se">\n</span><span class="s2">&quot;</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>        <span class="sa">f</span><span class="s2">&quot; - </span><span class="si">{</span><span class="s1">&#39;You guessed correctly! :)&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">response</span><span class="o">.</span><span class="n">correct</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Incorrect guess :(&#39;</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>        <span class="sa">f</span><span class="s2">&quot; - Number of attempts so far: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">num_guesses</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>        <span class="sa">f</span><span class="s2">&quot; - A hint: &#39;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">hint</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="p">)</span> <span class="c1"># (13)!</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
-<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="n">client</span><span class="o">.</span><span class="n">destroy_node</span><span class="p">()</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
-<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>In Weeks 8-11 you will attend weekly two-hour lab sessions in <strong>Diamond Computer Room 5</strong>, where you will work <strong>in teams</strong> with our <strong>Real TurtleBot3 Waffle Robots</strong>, and program them to complete a <em>"Real World Exploration"</em> task. You'll use the ROS2 knowledge gained throughout <a href="../sim/">the Simulation Labs</a>, as well as the theory you are learning in the ACS6121 lectures to help you with this.</p>
+<p>In preparation for this, you will form your teams in Week 5, and work together during the labs in Weeks 5 &amp; 6 to develop the necessary control algorithms <em>in simulation</em> first. The labs in Weeks 5 &amp; 6 will take place in Diamond <strong>Computer Room 6</strong>.</p>
+<p>Unlike the Simulation Labs in Weeks 2-4, there won’t be any taught content or weekly exercises for you to work through for the Real-Robot Labs: you are now expected to work more autonomously in your team. </p>
+<h2 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h2>
+<p>This assignment is <strong>worth 20%</strong> of your overall mark for the ACS6121 course.</p>
+<p>Your team will need to submit a ROS package via Blackboard before the deadline at the end of Week 11 (<strong>see Blackboard for the exact date and time</strong>). The submitted ROS package will then be assessed by the teaching team. The team will run your ROS package three times, and the performance of the robot during all three runs will be considered in the marking. </p>
+<h2 id="teams-team-working">Teams &amp; Team Working<a class="headerlink" href="#teams-team-working" title="Permanent link">&para;</a></h2>
+<p>From Week 8 onwards the class is divided into two groups: <strong>1</strong> and <strong>2</strong>, each group attending a <em>different</em> weekly lab session in Diamond Computer Room 5.</p>
+<p>For this Real-Robot Lab, you are expected to actively work together with your team members to complete the assignment. </p>
+<p>Details on the teams can be found in the <strong>"Real-Robot Labs"</strong> section on the ACS6121 Blackboard Course Page.</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>You will only have <strong>four lab sessions</strong> to work with the real robots, and you <strong>won't</strong> be able to gain additional access the robots outside your scheduled lab sessions.</p>
+<p>As such, it is vital that you wokrk tteogtrehr in your teams in advance, to prepare for this. </p>
+<p>Before week 8, you will need to work in the lab <strong>and</strong> in your own time (with your team) to develop your ROS package for the assignment task, so that you have something ready to go in time for the first real robot lab in Week 8.</p>
+</div>
+<h2 id="getting-support">Getting Support<a class="headerlink" href="#getting-support" title="Permanent link">&para;</a></h2>
+<p>The best way for you to get support is to attend the weekly lab sessions, where the teaching team will be present to answer any questions that you may have. Although we are more than happy to discuss things and help you, it is not our job to debug your entire code on your behalf on the spot.</p>
+<p>Remember to use the <a href="../sim/">ROS Simulation Lab course</a> as a reference throughout this work: taking the things that we worked on here and applying them to your team’s ROS package.</p>
+<p>Finally, don’t forget to use the ACS6121 Discussion Board on Blackboard to post any questions you may have regarding this Lab.</p>
+<h2 id="submission-requirements">Submission Requirements<a class="headerlink" href="#submission-requirements" title="Permanent link">&para;</a></h2>
+<p>The submission deadline for your team's ROS package is <strong>11:59 pm, Friday, May 10, 2024</strong>. The Blackboard submission portal will become open on Week 10. In order to be assessed, you must ensure that the following requirements are met with regard to the ROS package that your team submits (as well as any additional requirements described in the later sections of this document):</p>
+<ul>
+<li>As mentioned earlier, everything your team submits for this lab must be contained within a single ROS package. Inside this you will develop all the necessary nodes that allow your robot to complete the exploration task.</li>
+<li>
+<p>In the root of your team's package directory, there should be a <code>launch</code> folder; in the <code>launch</code> folder, there is a launch file with the following naming convention:</p>
+<p><code>explore.launch</code></p>
+<p>The task will be assessed by the teaching team using this launch file.
+* Your team's ROS package must work ‘out-of-the-box’, i.e. the module leader and GTAs will not fix errors or modify your codes for you during the assessment.
+* Your package must be submitted to Blackboard as a <code>.tar</code> file with the following naming convention:</p>
+<p><code>acs6121_team{}.tar</code></p>
+<p>Where the <code>{}</code> must be replaced with your own team number. Detailed instructions on how to convert your ROS package to .tar file are provided below.</p>
+</li>
+</ul>
+<h2 id="exporting-your-ros-package-for-submission">Exporting your ROS Package for Submission<a class="headerlink" href="#exporting-your-ros-package-for-submission" title="Permanent link">&para;</a></h2>
+<p>When it comes to submission time, it's important that you follow the steps below carefully to create a <code>.tar</code> archive of your ROS package correctly. We recommend that you do this from WSL-ROS on a University Managed Desktop Computer (rather than one of the robot laptops), so that you can save it to your University <code>U:</code> Drive.</p>
 <ol>
 <li>
-<p>Nothing above this should be new to you. </p>
-<p>Here however, we're importing a standard Python module called <code>argparse</code>, which we'll use to build a <em>command-line interface</em> for our node.</p>
-</li>
-<li>
-<p>Creating a Service <em>Client</em> is done using the <code>create_client()</code> class method, providing the name of the service that we want to call (<code>srv_name</code>), and specifying the interface type used by it (<code>srv_type</code>). </p>
-<p><code>srv_type</code> and <code>srv_name</code> <strong>must</strong> match the definition in the server, in order to be able to communicate and send requests to it. </p>
-</li>
-<li>
-<p>Here we're building a simple Command-line Interface (CLI) for the node, using <code>argparse</code>.</p>
-</li>
-<li>
-<p>We add an argument here called "guess", which will be used to pass our guesses for the number game from the command line, into this node.</p>
-<p>The node itself can then access the value that we've passed to it (an <code>int</code>) and use this to construct a service request.</p>
-<p>We've assigned a default value of <code>0</code> here, for cases where we don't pass a guess from the CLI.</p>
-</li>
-<li>
-<p>Here we're adding a <em>second</em> Command-line Argument (CLA) called "cheat".</p>
-<p><code class="highlight"><span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span></code> ensures that if we don't specify this argument as a CLA then the value will be set to <code>False</code>. If we do pass in this argument then the value will be <code>True</code>. </p>
-<p>(You'll see how this all works shortly, when we actually run the node.)</p>
-</li>
-<li>
-<p>Here we "parse" the arguments that have been passed to the node from the CLI, so that we can access them from <code>self.args</code>.</p>
-</li>
-<li>
-<p>We use a <code>while</code> loop here to halt the execution of the code at this point and wait for the service to become available (if it isn't already). </p>
-<p>We can't send a request to a service that isn't actually running!</p>
-</li>
-<li>
-<p>In this class method we construct a service <strong>request</strong>, based on the values that have been passed via the CLI.</p>
-<p>(This method is called in the <code>main()</code> function below.)</p>
-<p>We know what the <strong>request</strong> attributes are called, because we defined them in the <code>MyNumberGame.srv</code> file, and we can also use <code>ros2 interface show</code> to recall them at any point:</p>
-<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ ros2 interface show part4_services/srv/MyNumberGame
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>int32 guess
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>bool cheat
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>---
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>int32 num_guesses
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>string hint
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>bool correct
-</code></pre></div>
-<p><code class="highlight"><span class="n">call_async</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></code> then actually sends this request to the server.</p>
-</li>
-<li>
-<p>Here we're grabbing the values passed via the CLI and printing them as a log message to the terminal, in order to verify exactly what request will be sent.</p>
-</li>
-<li>
-<p>We then call our client's <code>send_request()</code> class method, supplying the <code>guess</code> and <code>cheat</code> values from the CLI to this too, in order for the request to be constructed accordingly, and sent to the server. </p>
-<p>The output of this function is the output of the <code>call_async(request)</code> call, which we assign to a variable called <code>future</code>.</p>
-</li>
-<li>
-<p>We use the <code>rclpy.spin_until_future_complete()</code> method here, which (as the name suggests) will allow our node (<code>client</code>) to spin <em>only</em> until our service request (<code>future</code>) has completed. </p>
-</li>
-<li>
-<p>Once we've reached this point then the service has completed and returned its <strong>Response</strong>. </p>
-<p>We obtain the response from our <code>future</code> object so that we can read its values...</p>
-</li>
-<li>
-<p>To finish off, we construct another log message to contain all the values returned by the Server (i.e. the <strong>Response</strong>). </p>
-<p>We know what these attributes are called, because we defined them in the <code>MyNumberGame.srv</code> file, which we can recall at any point using <code>ros2 interface show</code>:</p>
-<div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ ros2 interface show part4_services/srv/MyNumberGame
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>int32 guess
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>bool cheat
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>---
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>int32 num_guesses
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>string hint
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>bool correct
-</code></pre></div>
+<p>First, navigate to the <code>catkin_ws/src</code> directory in a WSL-ROS terminal instance:</p>
+<p><code>cd ~/catkin_ws/src/</code>
+2.  Then, use the <code>tar</code> command to create an archive of your package:</p>
+<p><code>tar -cvf /mnt/u/wsl-ros/acs6121_team{}.tar acs6121_team{}</code></p>
+<p>... replacing <code>{}</code> with your own team number again.</p>
+<p>This will create the <code>.tar</code> archive in your own personal University <code>U:</code> Drive, which you can access using the <em>Windows File Explorer</em>...
+3.  In <em>Windows</em>, open up Windows Explorer, click <code>This PC'' in the left-hand toolbar and locate your own personal `U:` Drive in the</code>Network locations'' area.
+4.  In here there should be a <code>wsl-ros</code> folder, which should contain the <code>.tar</code> file that you have just created.
+5.  Submit this <code>.tar</code> file to Blackboard via the appropriate submission portal.</p>
 </li>
 </ol>
-<p align="center">
-  <a href="../../part4#ex_srv_cli_ret">&#8592; Back to Part 4</a>
-</p>
+<p><center></p>
+<p><em>Now, let's get started!</em></p>
+<p></center></p>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<h3 id="working-with-the-real-robots">Working with the Real Robots<a class="headerlink" href="#working-with-the-real-robots" title="Permanent link">&para;</a></h3>
+<p>Before Week 8, your team must have developed a fully working ROS package for testing on the real-robot and all your team members must have finished the health &amp; safety quiz and its associated tasks before being allocated with the robot and its laptop.</p>
+<p>During the lab sessions on weeks 8-10, your team will be given a Turlebot3 Waffle robot and a laptop. As mentioned earlier, to get started controlling the real robot, you can refer to <a href="https://lincaolab.github.io/acs6121/waffles/">Working with the Real TurtleBot3 Waffles</a> for your reference (pay special attention to the out-of-the-range LIDAR data). There are a few exercises that you can have a go there too (</p>
 
 
 
@@ -1719,7 +1721,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="February 14, 2025 14:26:07"><span class="timeago" datetime="2025-02-14T14:26:07+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="February 14, 2025 14:26:07">2025-02-14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="March 7, 2025 17:07:36"><span class="timeago" datetime="2025-03-07T17:07:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="March 7, 2025 17:07:36">2025-03-07</span>
   </span>
 
     
@@ -1729,7 +1731,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="February 14, 2025 13:52:12"><span class="timeago" datetime="2025-02-14T13:52:12+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="February 14, 2025 13:52:12">2025-02-14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="March 7, 2025 17:07:36"><span class="timeago" datetime="2025-03-07T17:07:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="March 7, 2025 17:07:36">2025-03-07</span>
   </span>
 
     
@@ -1764,7 +1766,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../part3/lidar_subscriber/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Building a Basic LaserScan Subscriber Node">
+          <a href="../extras/launch-files/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Launch Files">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1774,20 +1776,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Building a Basic LaserScan Subscriber Node
+                Launch Files
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../part5/explore_server/" class="md-footer__link md-footer__link--next" aria-label="Next: The Part 5 Explore Server Template">
+          <a href="../sim/" class="md-footer__link md-footer__link--next" aria-label="Next: Simulation Labs: An Introduction to ROS">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                The Part 5 Explore Server Template
+                Simulation Labs: An Introduction to ROS
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1804,7 +1806,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="../../../../assets/external/i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br />  &copy; <a href="https://www.sheffield.ac.uk/engineering/diamond-engineering/our-staff/tom-howard">Tom Howard</a>, The University of Sheffield, 2025.
+      <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="../../assets/external/i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br />  &copy; <a href="https://www.sheffield.ac.uk/engineering/diamond-engineering/our-staff/tom-howard">Tom Howard</a>, The University of Sheffield, 2025.
 
     </div>
   
@@ -1826,20 +1828,20 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
-        <script src="../../../../js/timeago.min.js"></script>
+        <script src="../../js/timeago.min.js"></script>
       
-        <script src="../../../../js/timeago_mkdocs_material.js"></script>
+        <script src="../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../../../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
-        <script src="../../../../https:/polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="../../https:/polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
-        <script src="../../../../assets/external/cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../assets/external/cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   <script id="init-glightbox">document.querySelectorAll('.glightbox').forEach(function(element) {
