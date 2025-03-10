@@ -3,7 +3,7 @@ title: "Creating your Team's Package"
 description: "TODO" 
 ---
 
-## Creating your Team's Package
+# Creating your Team's Package
 
 You should use the same procedures as you did in the Simulation Labs to create a ROS package for this assignment (described again below). You should create **one package per team**, so nominate **one** member of your team to do this bit now.
 
