@@ -1,7 +1,8 @@
 ---
-title: "Your Team's ROS Package"
+title: "Creating your Team's Package"
 description: "TODO" 
 ---
+
 ## Creating your Team's Package
 
 You should use the same procedures as you did in the Simulation Labs to create a ROS package for this assignment (described again below). You should create **one package per team**, so nominate **one** member of your team to do this bit now.
@@ -91,18 +92,15 @@ You should do this from within your own local ROS installation (i.e. on your own
         source ~/.bashrc
         ```
     
-!!! tip "Don't forget"
-    You'll need to follow the above **three-step** `colcon build` process whenever you do things like:
+    !!! tip "Don't forget"
+        You'll need to follow the above **three-step** `colcon build` process whenever you do things like:
 
-    1. Add a new node to your package (don't forget to modify the `CMakeLists.txt` file too)
-    1. Add **or modify** a launch file
-    1. Add **or modify** a custom interface (like in [Part 1](../sim/part1.md#ex7))
-    1. Copy your package onto a different computer 
+        1. Add a new node to your package (don't forget to modify the `CMakeLists.txt` file too)
+        1. Add **or modify** a launch file
+        1. Add **or modify** a custom interface (like in [Part 1](../sim/part1.md#ex7))
+        1. Copy your package onto a different computer 
 
-## Transferring Your ROS Package
+## See Also
 
-TODO
-
-## Exporting your ROS Package for Submission
-
-TODO
+* [Transferring Your ROS Package to the Robotics Laptops](./first-lab.md#transferring-your-ros-package-to-the-robotics-laptops)
+* [Exporting Your ROS Package for Submission](./submission.md#exporting-your-ros-package-for-submission)

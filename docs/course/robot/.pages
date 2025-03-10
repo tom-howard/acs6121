@@ -1,6 +1,6 @@
 nav:
   - README.md
-  - your-ros-pkg.md
+  - getting-started.md
   - the-task.md
   - sim-resources.md
   - first-lab.md

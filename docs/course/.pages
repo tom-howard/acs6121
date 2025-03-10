@@ -1,4 +1,5 @@
 nav:
   - README.md
   - "Simulation Labs": sim
+  - "The Real-Robot Lab Assignment": robot
   - "Additional Resources": extras

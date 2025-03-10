@@ -42,7 +42,7 @@ Each team member will need to complete a peer evaluation at the end of this assi
 !!! warning "Important"
     You will only have **four lab sessions** to work with the real robots, and you **won't** be able to gain additional access the robots outside your scheduled lab sessions.
     
-It is vital that you work together in your teams in advance, to prepare for this. 
+It is vital that you work together in your teams in advance to prepare for this. 
 
 Before week 8, you will need to work in the lab **and** in your own time (with your team) to develop your ROS package for the assignment task, so that you have something ready to go in time for the first real-robot lab in Week 8.
 
@@ -54,7 +54,7 @@ Your team will need to submit a ROS package via Blackboard before the deadline a
 
 ### Further Information
 
-* [Preparing your ROS package for Submission (TODO)]()
+* [Preparing your ROS package for Submission](./submission.md#exporting-your-ros-package-for-submission)
 * [The Task Brief](./the-task.md) (including [the Marking Criteria](./the-task.md#marking))
 
 ## Getting Support
@@ -73,8 +73,8 @@ Below you'll find a list of things that you need to do **before Week 8**.
 
 * [ ] Set up your Team's ROS package (by following [the instructions here](./your-ros-pkg.md#creating-your-teams-package))
 * [ ] Read the Task Brief ([available here](./the-task.md))
-* [ ] Complete the *"Real-Robot Health and Safety Quiz"* (See below for further details)
 * [ ] Start developing your ROS application using [the simulation resources](./sim-resources.md).
+* [ ] Complete the *"Real-Robot Health and Safety Quiz"* (See below for further details)
 
 ### Real-Robot Health & Safety Quiz
 

@@ -57,11 +57,11 @@ The environment that your robot will need to explore for this will be the Diamon
 
 1. The ROS package that you submit must contain a launch file called `explore.launch.py`, such that the functionality that you develop for this task can be launched from your package via the command:
 
-    ```bash
+    ``` { .bash .no-copy }
     ros2 launch acs6121_teamXX_2025 explore.launch.py
     ```
 
-    For more information regarding the submission process and preparing your package for submission [see here (TODO)]().
+    For more information regarding the submission process and preparing your package for submission [see here](./submission.md).
 
     !!! note "Notes"
 
@@ -75,7 +75,7 @@ Further marks are available if, whilst your robot is completing this task, you c
 
 In [Part 3 of the Simulation Labs](../sim/part3.md#ex5) we launched SLAM using the following `ros2 launch` command:
 
-```bash
+``` { .bash .no-copy }
 ros2 launch tuos_simulations cartographer.launch.py
 ```
 
