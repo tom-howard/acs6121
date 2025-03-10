@@ -2,182 +2,202 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://tom-howard.github.io/acs6121/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/about/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/about/changelog/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/about/license/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/about/robots/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/extras/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/extras/course-repo/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/extras/launch-files/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/robot/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://tom-howard.github.io/acs6121/course/robot/first-lab/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://tom-howard.github.io/acs6121/course/robot/sim-resources/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://tom-howard.github.io/acs6121/course/robot/submission/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://tom-howard.github.io/acs6121/course/robot/the-task/</loc>
+         <lastmod>2025-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://tom-howard.github.io/acs6121/course/robot/your-ros-pkg/</loc>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part1/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part2/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part3/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part4/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part5/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part6/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part1/publisher/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part1/subscriber/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part2/move_circle/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part2/move_square/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part2/odom_subscriber/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part3/lidar_subscriber/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part4/number_game_client/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part5/explore_server/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part6/line_follower/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part6/object_detection/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/course/sim/part6/object_detection_complete/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/other-options/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/other-options/docker-ros2/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/other-options/utm/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/using-wsl-ros/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/using-wsl-ros/linux-term/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/using-wsl-ros/man-win/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/using-wsl-ros/vscode/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/wsl-ros/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/wsl-ros/install/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/ros/wsl-ros/man-win/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/waffles/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/waffles/basics/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/waffles/essentials/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/waffles/intro/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/waffles/launching-ros/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
     <url>
          <loc>https://tom-howard.github.io/acs6121/waffles/shutdown/</loc>
-         <lastmod>2025-03-08</lastmod>
+         <lastmod>2025-03-10</lastmod>
     </url>
 </urlset>
