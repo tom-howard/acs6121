@@ -71,7 +71,7 @@ As discussed above, you'll need to make a start on this assignment during Weeks 
 
 Below you'll find a list of things that you need to do **before Week 8**.
 
-* [ ] Set up your Team's ROS package (by following [the instructions here](./your-ros-pkg.md#creating-your-teams-package))
+* [ ] Set up your Team's ROS package (by following [the instructions here](./getting-started.md))
 * [ ] Read the Task Brief ([available here](./the-task.md))
 * [ ] Start developing your ROS application using [the simulation resources](./sim-resources.md).
 * [ ] Complete the *"Real-Robot Health and Safety Quiz"* (See below for further details)
