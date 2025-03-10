@@ -55,8 +55,7 @@ Your team will need to submit a ROS package via Blackboard before the deadline a
 ### Further Information
 
 * [Preparing your ROS package for Submission (TODO)]()
-* [Marking Criteria (TODO)]()
-* [The Task Brief (TODO)]()
+* [The Task Brief](./the-task.md) (including [the Marking Criteria](./the-task.md#marking))
 
 ## Getting Support
 
@@ -72,10 +71,10 @@ As discussed above, you'll need to make a start on this assignment during Weeks 
 
 Below you'll find a list of things that you need to do **before Week 8**.
 
-* [ ] Set up your Team's ROS package (by following [the instructions here (TODO)]())
-* [ ] Read the Task Brief ([available here (TODO)]())
+* [ ] Set up your Team's ROS package (by following [the instructions here](./your-ros-pkg.md#creating-your-teams-package))
+* [ ] Read the Task Brief ([available here](./the-task.md))
 * [ ] Complete the *"Real-Robot Health and Safety Quiz"* (See below for further details)
-* [ ] Start developing your ROS application using [the simulation resources (TODO)]().
+* [ ] Start developing your ROS application using [the simulation resources](./sim-resources.md).
 
 ### Real-Robot Health & Safety Quiz
 
