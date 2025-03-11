@@ -19,6 +19,9 @@ ros2 launch tuos_simulations acs6121.launch.py
   <figcaption>The development arena for the Real-World Exploration Task.</figcaption>
 </figure>
 
+!!! warning
+    The location and orientation of obstacles **will be different** to those in this simulation!
+
 By default, the robot will spawn into the arena in the orientation shown in the figure above, however you can test out *different* starting orientations for the robot by supplying an additional command line argument to the `acs6121.launch.py` file: 
 
 ``` { .bash .no-copy }
