@@ -1,5 +1,5 @@
 ---
-title: "The Real-Robot Lab Assignment"
+title: "The Real Robot Lab Assignment"
 description: Apply your ROS2 knowledge to real TurtleBot3 Waffles in the lab.
 --- 
 
@@ -55,7 +55,7 @@ Your team will need to submit a ROS package via Blackboard before the deadline a
 ### Further Information
 
 * [Preparing your ROS package for Submission](./submission.md#exporting-your-ros-package-for-submission)
-* [The Task Brief](./the-task.md) (including [the Marking Criteria](./the-task.md#marking))
+* [The Task Brief](./task.md) (including [the Marking Criteria](./task.md#marking))
 
 ## Getting Support
 
@@ -72,8 +72,8 @@ As discussed above, you'll need to make a start on this assignment during Weeks 
 Below you'll find a list of things that you need to do **before Week 8**.
 
 * [ ] Set up your Team's ROS package (by following [the instructions here](./getting-started.md))
-* [ ] Read the Task Brief ([available here](./the-task.md))
-* [ ] Start developing your ROS application using [the simulation resources](./sim-resources.md).
+* [ ] Read the Task Brief ([available here](./task.md))
+* [ ] Start developing your ROS application using [the simulation resources](./sim.md).
 * [ ] Complete the *"Real-Robot Health and Safety Quiz"* (See below for further details)
 
 ### Real-Robot Health & Safety Quiz

@@ -13,8 +13,8 @@ The labs for ACS6121 are split into two parts:
 
     **Weighting**: 20% of the overall ACS6121 module mark.
 
-* **Real Robot Labs**: "Team Robotics Project".
+* [**Real Robot Team-Based Assignment**: "Real-World Exploration"](./robot/README.md).
 
-    *Here you will work in teams of 3/4 to complete a real-world robotics task using our Tutlebot3 Waffle Robots in the Lab (Diamond Computer Room 5).*
+    *Here you will work in teams of 3 or 4 to complete a real-world robotics task using our Tutlebot3 Waffle Robots in the Lab (Diamond Computer Room 5).*
 
     **Weighting**: 20% of the overall ACS6121 module mark

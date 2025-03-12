@@ -1,6 +1,6 @@
 ---
 title: "Simulation Resources"
-description: "TODO"
+description: "Details of the simulation environment that you can use to test out your algorithms"
 ---
 
 Within the `tuos_simulations` package there is an example arena which can be used to develop and test out your team's work for this task.

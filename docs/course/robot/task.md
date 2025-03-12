@@ -1,6 +1,6 @@
 ---
 title: "The Assignment Task"
-description: TODO
+description: "Details of the Real-World Exploration task and the marking criteria"
 ---
 
 ## Real-World Exploration

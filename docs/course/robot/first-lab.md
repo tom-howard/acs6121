@@ -1,6 +1,6 @@
 ---
-title: "Week 8: Your First Real-Robot Lab"
-description: "TODO"
+title: "Week 8: Your First Real Robot Lab"
+description: "Some exercises to help you to get to know the real robots and how they work"
 ---
 
 ## Getting to Know the Real Robots

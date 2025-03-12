@@ -1,7 +1,7 @@
 nav:
   - README.md
   - getting-started.md
-  - the-task.md
-  - sim-resources.md
+  - task.md
+  - sim.md
   - first-lab.md
   - submission.md

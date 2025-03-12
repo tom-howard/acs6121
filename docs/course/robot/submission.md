@@ -1,6 +1,6 @@
 ---
 title: "Week 11: Submission Details (& Key Requirements)"
-description: ""
+description: "How to submit your ROS package for the Real-Robot Lab Assignment"
 ---
 
 ## Deadline

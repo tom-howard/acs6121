@@ -1,6 +1,6 @@
 ---
 title: "Creating your Team's Package"
-description: "TODO" 
+description: "The first step is to create a ROS package for your code to live in" 
 ---
 
 # Creating your Team's Package
