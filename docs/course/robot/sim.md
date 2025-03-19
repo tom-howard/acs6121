@@ -35,8 +35,8 @@ Where the value of `X` can be any orientation angle, in radians. Remember that f
 | `yaw:=` | Orientation |
 | :---: | :--- |
 | `0.0` | The robot is facing the **Blue** pillar when spawned (default) |
-| `1.571` | The robot is facing the **Pink** pillar when spawned |
-| `-1.571` | The robot is facing the **Turquoise** pillar when spawned |
+| `1.571` | The robot is facing the **Green** pillar when spawned |
+| `-1.571` | The robot is facing the **Red** pillar when spawned |
 | `3.142` | The robot is facing the **Yellow** pillar when spawned |
 
 </center>
