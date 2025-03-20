@@ -50,12 +50,11 @@ Before week 8, you will need to work in the lab **and** in your own time (with y
 
 This assignment is **worth 20%** of your overall mark for the ACS6121 course.
 
-Your team will need to submit a ROS package via Blackboard before the deadline at the end of Week 11 (**see Blackboard for the exact date and time**). The submitted ROS package will then be assessed by the teaching team. The team will run your ROS package three times, and the performance of the robot during all three runs will be considered in the marking. 
+Your team will need to submit a ROS package via Blackboard before the deadline at the end of Week 11 (**see Blackboard for the exact date and time**). [See here for full details of the submission process](./submission.md). 
 
-### Further Information
+Your submitted ROS package will then be assessed by the teaching team off-line during the Spring Exam Period. Before the end of the exam period you will receive your marks, plus video recordings of your ROS package being run on a real robot in the Diamond Computer Room 5 robot arena.
 
-* [Preparing your ROS package for Submission](./submission.md#exporting-your-ros-package-for-submission)
-* [The Task Brief](./task.md) (including [the Marking Criteria](./task.md#marking))
+We will run your ROS package three times, and the performance of the robot during all three runs will be considered in the marking. [See here for more detail on this](./task.md#marking). 
 
 ## Getting Support
 

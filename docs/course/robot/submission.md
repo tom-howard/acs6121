@@ -9,6 +9,8 @@ The deadline for submission of your ROS package for this task is **Friday of Wee
 
 You should submit your team's ROS package to Blackboard, by following the steps outlined below. You should make **one submission per team**, so nominate one member of the team to do this.
 
+Your submitted ROS package will be assessed by the teaching team off-line during the Spring Exam Period. Before the end of the exam period you will receive your marks, plus video recordings of the assessment.
+
 ##  Key Requirements
 
 !!! warning

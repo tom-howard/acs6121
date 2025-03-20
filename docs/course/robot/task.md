@@ -91,7 +91,14 @@ ros2 run nav2_map_server map_saver_cli -f MAP_NAME
 It is also possible however to do this *programmatically* using the ROS 2 Service framework. You'll therefore need to work through [Part 4 of the Simulation Lab Course](../sim/part4.md) if you want to find out how this can be done.
 
 In order to attain the marks for this *advanced feature* of the task, the root of your `acs6121_teamXX_2025` package directory must contain a directory called `maps`, and the map file that you obtain must be saved into this directory with the name: `explore_map.png`
-  
+
+### Dependencies
+
+You may draw upon any pre-existing Python libraries or ROS 2 packages for this task **as long as they are pre-installed in the WSL-ROS2 environment**. The WSL-ROS2 environment is equivalent to the software setup on the real robotics hardware, so any packages that exist in one will also exist in the other.
+
+!!! danger "Note"
+    You will not be able to request for any *additional* libraries/packages to be installed! 
+
 ## Marking
 
 Each team's submission will be assessed **three times** for this task. The robot will always start in the centre of the arena, but its orientation will be different for each individual run. The robot's orientation will always be perpendicular to the outer arena walls and the arena layout will be the same each time too.
