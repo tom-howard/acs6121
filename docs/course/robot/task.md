@@ -5,7 +5,9 @@ description: "Details of the Real-World Exploration task and the marking criteri
 
 ## Real-World Exploration
 
-Develop the ROS node(s) to allow a TurtleBot3 Waffle to autonomously explore a real-world environment containing various obstacles. The robot must explore as much of the environment as possible in 90 seconds without crashing into anything!
+Develop the ROS node(s) to allow a TurtleBot3 Waffle to autonomously explore a **real-world environment** containing various obstacles. The robot must explore as much of the environment as possible in 90 seconds without crashing into anything!
+
+This task is assessed in a real world environment, **^^NOT^^ in simulation**!
 
 !!! success "Real Waffle Essential Exercises"
     
@@ -35,6 +37,8 @@ The environment that your robot will need to explore for this will be the Diamon
 <figure markdown>
   ![](./figures/explore_sim.jpg){width=600px}
 </figure>
+
+This is an *example* of what the real-world environment *might* look like. **ALL** objects (i.e. the four coloured cylinders and the four inner wooden wall assemblies) could be in *different positions entirely*. The wooden walls *may not be touching the outer edges of the arena*! The only things that will remain the same are the arena size, the location of the outer arena walls and the floor layout (i.e. the location of the exploration zones). 
 
 1. The robot will start in the centre of the arena, perpendicular to one of the four *outer* arena walls.
 1. It must explore the environment for **90 seconds** without touching **any** of the arena walls or the obstacles within it.
