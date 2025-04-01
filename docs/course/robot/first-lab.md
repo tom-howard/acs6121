@@ -39,7 +39,7 @@ The best way to transfer your package between systems is as a `.tar` file. The f
 1. From your local ROS installation (i.e. WSL-ROS2), run the `tar` command to compress your team's package into a `.tar` file:
 
     ``` { .bash .no-copy }
-    tar -cvf ~/acs6121_teamXX_2025.tar ~/ros2_ws/src/acs6121_teamXX_2025
+    tar -cvf ~/acs6121_teamXX_2025.tar -C ~/ros2_ws/src/ acs6121_teamXX_2025
     ```
     
     ... replacing `XX` with your own team number, of course!
