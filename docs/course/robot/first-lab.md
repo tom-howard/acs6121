@@ -20,7 +20,6 @@ Once you have been provided with your robot and laptop, work through each page o
 * [ ] Read about [the hardware](../../waffles/intro.md).
 * [ ] Learn how to [launch ROS and get the robots up and running](../../waffles/launching-ros.md).
 * [ ] Work through the [Waffle (& ROS) Basics](../../waffles/basics.md), which will help to get you started and understand how ROS and the robots work.
-* [ ] There is also some further *Essential Information* that you must all be aware of when working with the real robots. Work through [the further exercises here](../../waffles/essentials.md) now.
 * [ ] Finally, review the [Shutdown Procedures](../../waffles/shutdown.md). Follow these steps to shut down the robot and power off the robotics laptop at the end of each lab session.
 
 ## Transferring Your ROS Package to the Robotics Laptops
