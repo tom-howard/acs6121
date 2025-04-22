@@ -26,10 +26,12 @@ Before submitting your work, you **must** ensure that the following *Key Require
 
     ... where `XX` should be replaced with your team number.
 
-* [ ] Your package must contain **no build files** (`build/`, `install/`, `logs/`) that would be generated as a result of running `colcon build` from inside your package.
+    <a name="build-files"></a>
+
+* [ ] Your package must contain **no build files** (`build/`, `install/`, `log/`) that would be generated as a result of running `colcon build` from inside your package.
 
     !!! warning "Remember"
-        **Always** run `colcon build` from the **root** of the ROS workspace (e.g. `~/ros2_ws/`), to ensure that all build files are generated in the right location in the filesystem (`~/ros2_ws/build/`, `~/ros2_ws/install/`, `~/ros2_ws/logs/`).
+        **Always** run `colcon build` from the **root** of the ROS workspace (e.g. `~/ros2_ws/`), to ensure that all build files are generated in the right location in the filesystem (`~/ros2_ws/build/`, `~/ros2_ws/install/`, `~/ros2_ws/log/`).
 
 For the assessment of the task, your package will be built and deployed on one of the Robotics Laptops that you'll have been working with during the lab sessions. We will use the standard `student` user account, and your package will be downloaded to the `~/ros2_ws/src/` directory. 
 
