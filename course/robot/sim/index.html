@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/tuos_logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1877,34 +1877,17 @@
 <div class="no-copy highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>tuos_simulations<span class="w"> </span>acs6121.launch.py<span class="w"> </span>yaw:<span class="o">=</span>X
 </code></pre></div>
 <p>Where the value of <code>X</code> can be any orientation angle, in radians. Remember that for the assessment of this task, the robot will <strong>always</strong> be oriented <em>perpendicular</em> to one of the four outer arena walls at the start of the task, therefore only four <code>yaw</code> values are really relevant to you here:</p>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><code>yaw:=</code></th>
-<th style="text-align: left;">Orientation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>0.0</code></td>
-<td style="text-align: left;">The robot is facing the <strong>Blue</strong> pillar when spawned (default)</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>1.571</code></td>
-<td style="text-align: left;">The robot is facing the <strong>Green</strong> pillar when spawned</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>-1.571</code></td>
-<td style="text-align: left;">The robot is facing the <strong>Red</strong> pillar when spawned</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>3.142</code></td>
-<td style="text-align: left;">The robot is facing the <strong>Yellow</strong> pillar when spawned</td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
+<center>
+
+| `yaw:=` | Orientation |
+| :---: | :--- |
+| `0.0` | The robot is facing the **Blue** pillar when spawned (default) |
+| `1.571` | The robot is facing the **Green** pillar when spawned |
+| `-1.571` | The robot is facing the **Red** pillar when spawned |
+| `3.142` | The robot is facing the **Yellow** pillar when spawned |
+
+</center>
+
 <h2 id="simulation-vs-the-real-world">Simulation vs the Real World<a class="headerlink" href="#simulation-vs-the-real-world" title="Permanent link">&para;</a></h2>
 <p>This simulation is provided as a way for you to develop your algorithms in simulation during the Weeks 5 &amp; 6 labs, and to allow you to do some work on this assignment outside the lab sessions too. However, <strong>just because it works in simulation <ins>DOESN'T</ins> mean it will work in the real world</strong>!</p>
 <p>Make sure you test things out thoroughly during the real-robot lab sessions in Weeks 8-11.</p>

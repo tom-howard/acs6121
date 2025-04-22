@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/tuos_logo.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -2098,34 +2098,16 @@
 <h2 id="marking">Marking<a class="headerlink" href="#marking" title="Permanent link">&para;</a></h2>
 <p>Each team's submission will be assessed <strong>three times</strong> for this task. The robot will always start in the centre of the arena, but its orientation will be different for each individual run. The robot's orientation will always be perpendicular to the outer arena walls and the arena layout will be the same each time too.</p>
 <p>There are <strong>25 marks</strong> available for this task (per run), as outlined in the table below.</p>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Criteria</th>
-<th style="text-align: center;">Marks</th>
-<th style="text-align: left;">Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>A</strong>: Exploration</td>
-<td style="text-align: center;">12/25</td>
-<td style="text-align: left;">You will be awarded 1 mark for each of the outer 12 arena zones that the robot manages to enter (i.e. excluding the four zones in the middle). The robot only needs to enter each of the 12 zones once per run, but its full body must be inside the zone marking to be awarded the mark.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>B</strong>: Run Time</td>
-<td style="text-align: center;">8/25</td>
-<td style="text-align: left;">You will be awarded marks for the amount of time that your robot spends exploring the environment before 90 seconds has elapsed, <strong>or</strong> the robot makes contact with anything in its environment (<a href="#run-time">as per the table below</a>). <strong>The robot must leave the central red zone</strong> (a 1x1m area) in order to be eligible for any of these marks. If the robot does not explore beyond <strong>the central orange zone</strong> then a <span class="arithmatex">\(0.5\times\)</span> multiplication factor will be applied to the run time marks.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>C</strong>: Mapping with SLAM</td>
-<td style="text-align: center;">5/25</td>
-<td style="text-align: left;"><a href="#map-marks">Further details below</a>.</td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
+<center>
+
+| Criteria | Marks | Details |
+| :--- | :---: | :--- |
+| **A**: Exploration | 12/25 | You will be awarded 1 mark for each of the outer 12 arena zones that the robot manages to enter (i.e. excluding the four zones in the middle). The robot only needs to enter each of the 12 zones once per run, but its full body must be inside the zone marking to be awarded the mark. |
+| **B**: Run Time | 8/25 | You will be awarded marks for the amount of time that your robot spends exploring the environment before 90 seconds has elapsed, **or** the robot makes contact with anything in its environment ([as per the table below](#run-time)). **The robot must leave the central red zone** (a 1x1m area) in order to be eligible for any of these marks. If the robot does not explore beyond **the central orange zone** then a $0.5\times$ multiplication factor will be applied to the run time marks. |
+| **C**: Mapping with SLAM | 5/25 | [Further details below](#map-marks). |
+
+</center>
+
 <p>The final overall mark awarded to each team will be based on the marks attained for each of the three runs, but with a weighting applied to each:</p>
 <ul>
 <li><strong>60% weighting</strong>: applied to the run that scored the <strong>highest</strong> mark</li>
@@ -2139,75 +2121,31 @@
 <h3 id="run-time">Criterion B: Run Time<a class="headerlink" href="#run-time" title="Permanent link">&para;</a></h3>
 <p><strong>Marks:</strong> 8/25</p>
 <p>Marks will be awarded as follows:</p>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Time (Seconds)</th>
-<th style="text-align: center;">Marks</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">0-9</td>
-<td style="text-align: center;">0</td>
-</tr>
-<tr>
-<td style="text-align: center;">10-19</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: center;">20-29</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr>
-<td style="text-align: center;">30-39</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr>
-<td style="text-align: center;">40-49</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr>
-<td style="text-align: center;">50-59</td>
-<td style="text-align: center;">5</td>
-</tr>
-<tr>
-<td style="text-align: center;">60-89</td>
-<td style="text-align: center;">6</td>
-</tr>
-<tr>
-<td style="text-align: center;">The full 90!</td>
-<td style="text-align: center;">8</td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
+<center>
+
+| Time (Seconds) | Marks |
+| :---: | :---: |
+| 0-9 | 0 |
+| 10-19 | 1 |
+| 20-29 | 2 |
+| 30-39 | 3 |
+| 40-49 | 4 |
+| 50-59 | 5 |
+| 60-89 | 6 |
+| The full 90! | 8 |
+
+</center>
+
 <h3 id="map-marks">Criterion C: Mapping with SLAM<a class="headerlink" href="#map-marks" title="Permanent link">&para;</a></h3>
 <p><strong>Marks:</strong> 5/25</p>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Criteria</th>
-<th style="text-align: left;">Details</th>
-<th style="text-align: left;">Marks</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>C1</strong></td>
-<td style="text-align: left;">By the end of the assessment a map of the robot arena (or any part of it) must have been generated. Two files should exist: a <code>.png</code> and a <code>.yaml</code>, both of which must be called <code>explore_map</code>, and both must be located in a <code>maps</code> folder at the root of your team's package directory i.e. <code>acs6121_teamXX_2025/maps/explore_map.png</code> and <code>acs6121_teamXX_2025/maps/explore_map.yaml</code>.</td>
-<td style="text-align: left;">2</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>C2</strong></td>
-<td style="text-align: left;">The <code>acs6121_teamXX_2025/maps/explore_map.png</code> map that is created <em>during the assessment</em> depicts <strong>some part of</strong> the real robot arena.</td>
-<td style="text-align: left;">3</td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
+<center>
+
+| Criteria | Details | Marks|
+| :--- | :--- | :--- |
+| **C1** | By the end of the assessment a map of the robot arena (or any part of it) must have been generated. Two files should exist: a `.png` and a `.yaml`, both of which must be called `explore_map`, and both must be located in a `maps` folder at the root of your team's package directory i.e. `acs6121_teamXX_2025/maps/explore_map.png` and `acs6121_teamXX_2025/maps/explore_map.yaml`. | 2 |
+| **C2** | The `acs6121_teamXX_2025/maps/explore_map.png` map that is created *during the assessment* depicts **some part of** the real robot arena. | 3 |   
+
+</center>
 
 
 
