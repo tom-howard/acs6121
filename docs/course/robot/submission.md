@@ -5,7 +5,7 @@ description: "How to submit your ROS package for the Real-Robot Lab Assignment"
 
 ## Deadline
 
-The deadline for submission of your ROS package for this task is **Friday of Week 11 at 10pm** (BST).
+The deadline for submission of your ROS package for this task is **23:59 on Friday of Week 11**.
 
 You should submit your team's ROS package to Blackboard, by following the steps outlined below. You should make **one submission per team**, so nominate one member of the team to do this.
 
