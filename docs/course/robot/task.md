@@ -58,22 +58,6 @@ This is an *example* of what the real-world environment *might* look like. **ALL
     * If the robot explores for a while and then stops and doesn't move again for the remainder of the 90-second run, then *Run Time* marks will be awarded up to the point at which the robot ceased to be active.
     * Further details on the eligibility for *Run Time* marks are provided in [the Marking Section below](#marking).
 
-    <a name="launch"></a>
-
-1. The ROS package that you submit must contain a launch file called `explore.launch.py`, such that the functionality that you develop for this task can be launched from your package via the command:
-
-    ``` { .bash .no-copy }
-    ros2 launch acs6121_teamXX_2025 explore.launch.py
-    ```
-
-    For more information regarding the submission process and preparing your package for submission [see here](./submission.md).
-
-    !!! note "Notes"
-
-        * ROS will already be running on the robot before we attempt to execute your launch file on the laptop that the robot has been paired with. 
-
-        * The location, orientation and quantity of obstacles in the arena will not be revealed beforehand, so the ROS package that you develop will need to be able to accommodate an unknown environment. 
-
 ### Advanced Feature: Mapping with SLAM
 
 Further marks are available if, whilst your robot is completing this task, you can also run SLAM and generate a map of the environment in the background.
@@ -95,6 +79,22 @@ ros2 run nav2_map_server map_saver_cli -f MAP_NAME
 It is also possible however to do this *programmatically* using the ROS 2 Service framework. You'll therefore need to work through [Part 4 of the Simulation Lab Course](../sim/part4.md) if you want to find out how this can be done.
 
 In order to attain the marks for this *advanced feature* of the task, the root of your `acs6121_teamXX_2025` package directory must contain a directory called `maps`, and the map file that you obtain must be saved into this directory with the name: `explore_map.png`.
+
+### Executing Your Code {#launch}
+
+The ROS package that you submit must contain a launch file called `explore.launch.py`, such that the functionality that you develop for this task can be launched from your package via the command:
+
+``` { .bash .no-copy }
+ros2 launch acs6121_teamXX_2025 explore.launch.py
+```
+
+For more information regarding the submission process and preparing your package for submission [see here](./submission.md).
+
+!!! note "Notes"
+
+    * ROS will already be running on the robot before we attempt to execute your launch file on the laptop that the robot has been paired with. 
+
+    * The location, orientation and quantity of obstacles in the arena will not be revealed beforehand, so the ROS package that you develop will need to be able to accommodate an unknown environment. 
 
 ### Dependencies
 
