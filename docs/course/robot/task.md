@@ -113,7 +113,7 @@ There are **25 marks** available for this task (per run), as outlined in the tab
 
 | Criteria | Marks | Details |
 | :--- | :---: | :--- |
-| **A**: Exploration | 12/25 | You will be awarded 1 mark for each of the outer 12 arena zones that the robot manages to enter (i.e. excluding the four zones in the middle). The robot only needs to enter each of the 12 zones once per run, but its full body must be inside the zone marking to be awarded the mark. |
+| **A**: Exploration | 12/25 | You will be awarded 1 mark for each of the outer 12 arena zones that the robot manages to enter (i.e. excluding the four zones in the middle). The robot only needs to enter each of the 12 zones once per run, but **its full body must be inside the zone marking** to be awarded the mark. |
 | **B**: Run Time | 8/25 | You will be awarded marks for the amount of time that your robot spends exploring the environment before 90 seconds has elapsed, **or** the robot makes contact with anything in its environment ([as per the table below](#run-time)). **The robot must leave the central red zone** (a 1x1m area) in order to be eligible for any of these marks. If the robot does not explore beyond **the central orange zone** then a $0.5\times$ multiplication factor will be applied to the run time marks. |
 | **C**: Mapping with SLAM | 5/25 | [Further details below](#map-marks). |
 
