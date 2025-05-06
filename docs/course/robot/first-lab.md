@@ -34,7 +34,7 @@ There are a few methods that you could use to copy your ROS package onto the rob
 
 There is a ROS2 Workspace on each of the robot laptops (much the same as in the WSL-ROS2 environment), and your package must reside within the `ros2_ws/src` directory (much like ALL the packages that you created throughout the simulation labs!) 
 
-The best way to transfer your package between systems is as a `.tar` file. The following steps illustrate how this could be done:
+The best way to transfer your package between systems is as a `.tar` file. The following steps illustrate how to do this:
 
 1. From your local ROS installation (i.e. WSL-ROS2), run the `tar` command to compress your team's package into a `.tar` file:
 

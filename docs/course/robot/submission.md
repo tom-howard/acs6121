@@ -72,37 +72,25 @@ For the assessment of the task, your package will be built and deployed on one o
 
 ## Exporting your ROS Package for Submission
 
-When it comes to submission time, it's important that you follow the steps below carefully to create an archive of your ROS package correctly. We recommend that you do this from WSL-ROS2, or your own local ROS installation, rather than one of the Robotics Laptops.
+When it comes to submission time, it's important that you follow the steps below carefully to create an archive of your ROS package correctly. 
 
-1. First, run the following command, which will create a folder in your home directory called `myrosdata` (if it doesn't already exist):
-
-    ```bash
-    mkdir -p ~/myrosdata/
-    ```
-
-2. Then, navigate to your `ros2_ws/src` directory:
-
-    ```bash
-    cd ~/ros2_ws/src/
-    ```
-
-3. Use the `tar` command to create an archive of your team's package:
+1. From your local ROS installation (i.e. WSL-ROS2), run the `tar` command to compress your team's package into a `.tar` file:
 
     ``` { .bash .no-copy }
-    tar -cvf ~/myrosdata/acs6121_teamXX_2025.tar acs6121_teamXX_2025
+    tar -cvf ~/acs6121_teamXX_2025.tar -C ~/ros2_ws/src/ acs6121_teamXX_2025
     ```
     
     ... replacing `XX` with your own team number, of course!
 
-    This will create a `.tar` archive of your package in the `~/myrosdata` folder. 
+    This will create a `.tar` archive of your package in your home directory. 
 
-4. If you're using WSL-ROS2 (or any other WSL-based ROS installation) then you can then access this from the Windows File Explorer. In the terminal enter the following command:
+1. Access this using the Windows File Explorer. In the same terminal as above enter the following command to first navigate to the home directory, and then launch the Windows Explorer in this location:
 
     ```bash
-    cd ~/myrosdata/ && explorer.exe .
+    cd ~ && explorer.exe .
     ```
 
-5. An Explorer window should open, and in there you should see the `acs6121_teamXX_2025.tar` file that you just created. Copy and paste this to somewhere convenient on your machine.
+1. An Explorer window should then open, and in there you should be able to see the `acs6121_teamXX_2025.tar` file that you just created. Copy and paste this to somewhere convenient on your machine.
 
 6. Submit this `.tar` file to the appropriate submission portal on Blackboard.
 
