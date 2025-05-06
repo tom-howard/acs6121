@@ -92,5 +92,11 @@ When it comes to submission time, it's important that you follow the steps below
 
 1. An Explorer window should then open, and in there you should be able to see the `acs6121_teamXX_2025.tar` file that you just created. Copy and paste this to somewhere convenient on your machine.
 
-6. Submit this `.tar` file to the appropriate submission portal on Blackboard.
+6. Submit this `.tar` file to the appropriate submission portal on Blackboard:
+
+<center>
+
+**Blackboard** > **ACS6121** > **Assessment** > **Real-Robot Lab Assignment Submission**
+
+</center>
 
