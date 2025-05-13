@@ -84,7 +84,7 @@ When it comes to submission time, it's important that you follow the steps below
 
     This will create a `.tar` archive of your package in your home directory. 
 
-1. Access this using the Windows File Explorer. In the same terminal as above enter the following command to first navigate to the home directory, and then launch the Windows Explorer in this location:
+1. **If you are doing this from within WSL-ROS2 (i.e. on Windows)**, access this using the Windows File Explorer. In the same terminal as above enter the following command to first navigate to the home directory, and then launch the Windows Explorer in this location:
 
     ```bash
     cd ~ && explorer.exe .
